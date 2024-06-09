@@ -48,9 +48,6 @@ public class EditProfilePageController implements Initializable {
     private TextField confirmPwTF;
 
     @FXML
-    private Button discussionPostBtn;
-
-    @FXML
     private VBox editEmailBox;
 
     @FXML
@@ -122,6 +119,9 @@ public class EditProfilePageController implements Initializable {
     @FXML
     private Button usernameSaveBtn;
 
+    @FXML
+    private Label kinLabel;
+
     private Node alertPage;
     private AlertController alertController;
     private Scene alertScene;
@@ -167,21 +167,21 @@ public class EditProfilePageController implements Initializable {
 
     public void setup(User user) {
         currentUser = user;
-        
+
         usernameSaveBtn.setOnAction(event -> {
             String username = newUsernameTF.getText();
             String password = editUsernamePwPF.getText();
-            if(username.isBlank() || password.isBlank()){
+            if (username.isBlank() || password.isBlank()) {
                 showErrorAlert("All fields must be filled in!");
                 return;
             }
-            
+
             if (username.equals(currentUser.getUsername())) {
                 showErrorAlert("New username cannot be same with old username");
                 return;
             }
-            
-            if(!BCrypt.checkpw(password, currentUser.getPassword())){
+
+            if (!BCrypt.checkpw(password, currentUser.getPassword())) {
                 showErrorAlert("Incorrect password");
                 return;
             }
@@ -190,7 +190,7 @@ public class EditProfilePageController implements Initializable {
                 showErrorAlert("The username has been taken");
                 return;
             }
-            
+
             LoginRegisterHandler.changeUsername(username, currentUser);
             showSuccessAlert("Username changed successfully!");
             refresh();
@@ -199,22 +199,22 @@ public class EditProfilePageController implements Initializable {
         emailSaveBtn.setOnAction(event -> {
             String email = newEmailTF.getText();
             String password = editEmailPwPF.getText();
-            if(email.isBlank() || password.isBlank()){
+            if (email.isBlank() || password.isBlank()) {
                 showErrorAlert("All fields must be filled in!");
                 return;
             }
-            
+
             if (!LoginRegisterHandler.isValidateEmail(email)) {
-                showErrorAlert("Incorrect email address");
+                showErrorAlert("Invalid email address");
                 return;
             }
-            
+
             if (email.equals(currentUser.getEmail())) {
                 showErrorAlert("New email cannot be same with old email");
                 return;
             }
-            
-            if(!BCrypt.checkpw(password, currentUser.getPassword())){
+
+            if (!BCrypt.checkpw(password, currentUser.getPassword())) {
                 showErrorAlert("Incorrect password");
                 return;
             }
@@ -223,23 +223,23 @@ public class EditProfilePageController implements Initializable {
                 showErrorAlert("This email is already registered");
                 return;
             }
-            
+
             LoginRegisterHandler.changeEmail(email, currentUser);
             showSuccessAlert("Email changed successfully!");
             refresh();
         });
-        
+
         pwSaveBtn.setOnAction(event -> {
             String oldPw = oldPwPF.getText();
             String newPw = newPwPF.getText();
             String confirmPw = confirmPwPF.getText();
-            
-            if(oldPw.isBlank() || newPw.isBlank() || confirmPw.isBlank()){
+
+            if (oldPw.isBlank() || newPw.isBlank() || confirmPw.isBlank()) {
                 showErrorAlert("All fields must be filled in!");
                 return;
             }
-            
-            if(!BCrypt.checkpw(oldPw, currentUser.getPassword())){
+
+            if (!BCrypt.checkpw(oldPw, currentUser.getPassword())) {
                 showErrorAlert("Incorrect password");
                 return;
             }
@@ -248,12 +248,12 @@ public class EditProfilePageController implements Initializable {
                 showErrorAlert("Please confirm your new password");
                 return;
             }
-            
+
             if (newPw.equals(oldPw)) {
                 showErrorAlert("New password cannot be same with old password");
                 return;
             }
-            
+
             LoginRegisterHandler.changePassword(newPw, currentUser);
             showSuccessAlert("Password changed successfully!");
             refresh();
@@ -265,6 +265,94 @@ public class EditProfilePageController implements Initializable {
             for (Node btn : switchUsernameBtn.getParent().getChildrenUnmodifiable()) {
                 ((Button) btn).setPrefWidth(668.8 / 3);
             }
+        }
+
+        if (currentUser instanceof Student currentStudent) {
+            ((Label) switchKinBtn.getGraphic()).setText("Parent");
+            kinLabel.setText("New Parent Email");
+            kinSaveBtn.setOnAction(event -> {
+                String parentEmail = kinEmailTF.getText();
+
+                if (parentEmail.isBlank()) {
+                    showErrorAlert("All fields must be filled in!");
+                    return;
+                }
+
+                if (!LoginRegisterHandler.isValidateEmail(parentEmail)) {
+                    showErrorAlert("Invalid email address");
+                    return;
+                }
+
+                if (!LoginRegisterHandler.emailOrUsernameExist(parentEmail)) {
+                    showErrorAlert("User doesn't exist");
+                    return;
+                }
+
+                User parent = UserHandler.getUserByEmail(parentEmail);
+
+                if (!(parent instanceof Parent)) {
+                    showErrorAlert("The user is not parent");
+                    return;
+                }
+
+                if (currentStudent.getParentList().contains(parent.getID())) {
+                    showErrorAlert("Cannot add existing parent");
+                    return;
+                }
+
+                if (!LoginRegisterHandler.isValidateParentCount(currentStudent.getEmail())) {
+                    showErrorAlert("Already has 2 parents\nCannot add more");
+                    return;
+                }
+
+                UserHandler.addParent(currentStudent, (Parent) parent);
+                showSuccessAlert("Parent added successfully");
+                refresh();
+            });
+        }
+
+        if (currentUser instanceof Parent currentParent) {
+            ((Label) switchKinBtn.getGraphic()).setText("Children");
+            kinLabel.setText("New Child Email");
+            kinSaveBtn.setOnAction(event -> {
+                String childEmail = kinEmailTF.getText();
+
+                if (childEmail.isBlank()) {
+                    showErrorAlert("All fields must be filled in!");
+                    return;
+                }
+
+                if (!LoginRegisterHandler.isValidateEmail(childEmail)) {
+                    showErrorAlert("Invalid email address");
+                    return;
+                }
+
+                if (!LoginRegisterHandler.emailOrUsernameExist(childEmail)) {
+                    showErrorAlert("User doesn't exist");
+                    return;
+                }
+
+                User child = UserHandler.getUserByEmail(childEmail);
+
+                if (!(child instanceof Student)) {
+                    showErrorAlert("The user is not student");
+                    return;
+                }
+
+                if (currentParent.getChildrenList().contains(child.getID())) {
+                    showErrorAlert("Cannot add existing child");
+                    return;
+                }
+
+                if (!LoginRegisterHandler.isValidateParentCount(child.getEmail())) {
+                    showErrorAlert("The student already has 2 parents\nCannot add more");
+                    return;
+                }
+
+                UserHandler.addChild(currentParent, (Student) child);
+                showSuccessAlert("Child added successfully");
+                refresh();
+            });
         }
 
         refresh();

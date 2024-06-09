@@ -363,19 +363,22 @@ public class DBHandler {
         }
     }
 
-    protected void updateParent(String studentID, String parentID) {
+    protected String updateParent(String studentID, String parentID) {
         DB.connectDB();
         Connection conn = DB.getConnection();
 
         try {
             PreparedStatement ps = conn.prepareStatement("UPDATE student SET ParentID=?, ParentCount=ParentCount+1 WHERE ID=?");
+            System.out.println("parent add");
             String parentsID = getParentIDByID(studentID);
             parentsID += parentsID.isEmpty() ? parentID : "," + parentID;
             ps.setObject(1, parentsID);
             ps.setObject(2, studentID);
             ps.executeUpdate();
+            return parentsID;
         } catch (Exception e) {
             e.printStackTrace();
+            return null;
         } finally {
             try {
                 conn.close();
@@ -386,7 +389,7 @@ public class DBHandler {
         }
     }
 
-    protected void updateChildren(String parentID, String childID) {
+    protected String updateChildren(String parentID, String childID) {
         DB.connectDB();
         Connection conn = DB.getConnection();
 
@@ -397,8 +400,10 @@ public class DBHandler {
             ps.setObject(1, childrenID);
             ps.setObject(2, parentID);
             ps.executeUpdate();
+            return childrenID;
         } catch (Exception e) {
             e.printStackTrace();
+            return null;
         } finally {
             try {
                 conn.close();
@@ -428,18 +433,20 @@ public class DBHandler {
                 } else {
                     variable = "ChildrenID";
                 }
-                ps = conn.prepareStatement("INSERT INTO " + role + " (Email, Username, Password, Location, " + variable + ") VALUES (?,?,?,?,?)");
+                ps = conn.prepareStatement("INSERT INTO " + role + " (Email, Username, Password, Location) VALUES (?,?,?,?)");
                 ps.setObject(1, email);
                 ps.setObject(2, username);
                 ps.setObject(3, password);
                 ps.setObject(4, location);
-                ps.setObject(5, kinID);
             }
             if (ps.executeUpdate() != 0) {
+                String newUserID = getIDByEmail(email);
                 if (role.equals(User.ROLE.PARENT)) {
-                    updateParent(kinID, getIDByEmail(email));
+                    updateChildren(newUserID, kinID);
+                    updateParent(kinID, newUserID);
                 } else if (role.equals(User.ROLE.STUDENT)) {
-                    updateChildren(kinID, getIDByEmail(email));
+                    updateParent(newUserID, kinID);
+                    updateChildren(kinID, newUserID);
                 }
             }
         } catch (Exception e) {

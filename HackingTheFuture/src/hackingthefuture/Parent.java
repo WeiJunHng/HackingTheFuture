@@ -48,5 +48,9 @@ public class Parent extends User {
     public void book(Booking booking){
         UserHandler.updatePastBooking(this, booking);
     }
+    public void updateChild(String newChildrenID){
+        childrenID = newChildrenID;
+    }
+    
 
 }

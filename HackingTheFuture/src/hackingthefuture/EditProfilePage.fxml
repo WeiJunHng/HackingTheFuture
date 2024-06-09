@@ -316,7 +316,7 @@
                                  <children>
                                     <VBox prefHeight="71.0" prefWidth="425.0" spacing="10.0">
                                        <children>
-                                          <Label alignment="CENTER_RIGHT" prefHeight="35.0" styleClass="shadow" text="New Children Email" textAlignment="RIGHT" textFill="WHITE">
+                                          <Label fx:id="kinLabel" alignment="CENTER_RIGHT" prefHeight="35.0" styleClass="shadow" text="New Children Email" textAlignment="RIGHT" textFill="WHITE">
                                              <font>
                                                 <Font name="Cooper Black" size="27.0" />
                                              </font>

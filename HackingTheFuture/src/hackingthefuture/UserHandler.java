@@ -26,6 +26,18 @@ public class UserHandler {
         }
         return null;
     }
+    
+    public static User getUserByEmail(String email) {
+        User user = dBHandler.getUserByEmail(email);
+        if (user.getRole().equals(User.ROLE.STUDENT)) {
+            return new Student(user);
+        } else if (user.getRole().equals(User.ROLE.PARENT)) {
+            return new hackingthefuture.Parent(user);
+        } else if (user.getRole().equals(User.ROLE.EDUCATOR)) {
+            return new Educator(user);
+        }
+        return null;
+    }
 
     public static int getPoints(Student student) {
         return dBHandler.getPointsByID(student.getID());
@@ -99,6 +111,16 @@ public class UserHandler {
     
     public static void deleteFriendRequest(Student currentStudent, Student friend){
         dBHandler.deleteFriendRequest(currentStudent, friend);
+    }
+    
+    public static void addParent(Student student, Parent parent){
+        student.updateParent(dBHandler.updateParent(student.getID(), parent.getID()));
+        dBHandler.updateChildren(parent.getID(), student.getID());
+    }
+    
+    public static void addChild(Parent parent, Student student){
+        parent.updateChild(dBHandler.updateChildren(parent.getID(), student.getID()));
+        dBHandler.updateParent(student.getID(), parent.getID());
     }
 
 }

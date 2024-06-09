@@ -160,4 +160,8 @@ public class Student extends User {
     public void deleteFriendRequest(Student friend) {
         UserHandler.deleteFriendRequest(this, friend);
     }
+    
+    public void updateParent(String newParentID){
+        parentID = newParentID;
+    }
 }
