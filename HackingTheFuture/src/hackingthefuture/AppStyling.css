@@ -1,0 +1,35 @@
+    /*
+ * Empty Stylesheet file.
+ */
+
+.bg{
+    -fx-background-image : url("../Resources/Images/main_bg_dark.png");
+}
+
+.navBar Button{
+    -fx-background-color: transparent;
+    -fx-alignment: center-left;
+    -fx-text-fill: #FFFFFF;
+}
+
+.navBar Button:hover{
+    -fx-background-color: rgba(255, 255, 255, 0.7);
+    -fx-text-fill: rgba(0, 0, 0, 0.8);
+}
+
+#selected{
+    -fx-background-color: rgba(255, 255, 255, 0.9);
+    -fx-text-fill: rgba(0, 0, 0, 1);
+}
+
+#Student{
+    -fx-background-color: #d73482;
+}
+
+#Parent{
+    -fx-background-color: #5998e2;
+}
+
+#Educator{
+    -fx-background-color: #17d082;
+}

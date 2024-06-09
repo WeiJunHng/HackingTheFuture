@@ -1,0 +1,38 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 9 Jun 2024, 8:00:57 pm
+    Author     : Asus
+*/
+
+.bg{
+    
+}
+
+.bg TextField{
+    -fx-opacity: 0.8;
+    -fx-background-radius: 30;
+    -fx-border-radius: 30;
+    -fx-effect : dropshadow(three-pass-box, #000000 ,8.0,0.0,1.0,4.0);
+}
+
+.bg PasswordField{
+    -fx-opacity: 0.8;
+    -fx-background-radius: 30;
+    -fx-border-radius: 30;
+    -fx-effect : dropshadow(three-pass-box, #000000 ,8.0,0.0,1.0,4.0);
+}
+
+.bg TextField:focused{
+    -fx-opacity: 1;
+}
+
+.bg PasswordField:focused{
+    -fx-opacity: 1;
+}
+
+#SelectedBtn {
+    -fx-background-color:  rgba(196,196,196,0.5);
+}

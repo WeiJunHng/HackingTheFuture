@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox fx:id="discussionCard" prefHeight="178.0" prefWidth="1300.0" style="-fx-background-color: rgba(196,196,196,0.45); -fx-background-radius: 20;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hackingthefuture.DiscussionCardController">
+   <children>
+      <HBox alignment="CENTER">
+         <children>
+            <VBox>
+               <children>
+                  <Label fx:id="discussionTitleLabel" prefHeight="39.0" prefWidth="1200.0" text="Title of discussion" textFill="WHITE">
+                     <font>
+                        <Font name="Cooper Black" size="33.0" />
+                     </font>
+                  </Label>
+                  <HBox alignment="CENTER_LEFT">
+                     <children>
+                        <Label text="Posted by: " textFill="WHITE">
+                           <font>
+                              <Font name="Times New Roman Bold" size="25.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="discussionAuthorBtn" mnemonicParsing="false" style="-fx-background-color: transparent;" textFill="WHITE">
+                           <font>
+                              <Font name="Cooper Black" size="1.0" />
+                           </font>
+                           <graphic>
+                              <Label fx:id="discussionAuthorLabel" alignment="CENTER" style="-fx-background-radius: 30; -fx-effect: dropshadow(three-pass-box, #000000 ,6,0,1,2);" stylesheets="@ProfileStyling.css" text="Username" textFill="WHITE">
+                                 <font>
+                                    <Font name="Cooper Black" size="21.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets bottom="2.0" left="13.0" right="13.0" />
+                                 </padding>
+                              </Label>
+                           </graphic>
+                        </Button>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="3.0" />
+                     </VBox.margin>
+                  </HBox>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER">
+               <children>
+                  <Button fx:id="discussionLikeBtn" mnemonicParsing="false" style="-fx-background-color: transparent;" translateY="3.0">
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                     <graphic>
+                        <StackPane fx:id="discussionLikeIconSP">
+                           <children>
+                              <ImageView fx:id="redLove" fitHeight="36.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Resources/Images/like-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="blackLove" fitHeight="36.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Resources/Images/not-like-icon.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </StackPane>
+                     </graphic>
+                  </Button>
+                  <Label fx:id="discussionLikeCountLabel" text="999" textFill="WHITE">
+                     <font>
+                        <Font name="Cooper Black" size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </VBox>
+         </children>
+      </HBox>
+      <Label fx:id="discussionContentLabel" alignment="TOP_LEFT" prefHeight="85.0" text="hahahhahhahahahhahahahhahhahahahhahahahhahhahahahhahahahhahhahahahhahahahhahhahahahhahahahhahhahahahhahahahhahhahahahhahahahhahhahahahhahahahhahhahahahhahahahhahhahahahhahahahhahhahahahhahahahhahhahahahhahahahhahhahahahhahahahhahhahahahhahahahhahhahahahhahahahhahhahahahhahahahhahhahahahhahahahhahhahahahhahahahhahhahahahhahahahhahhahahahhahahahhahhahahahhahahahhahhahahahhahahahhahhahahahhahahahhahhahahahhahahahhahhahahahhahahahhahhahahahhahahahhahhahahahhahahahhahhahahahhahahahhahhahahahhahahahhahhahahahhahahahhahhahahahhahahahhahhahahahhahahahhahhahahahhahahahhahhahahahhahahahhahhahahahhahahahhahhahahahhahahahhahhahahahhahahahhahhahahahhahahahhahhahahahhahahahhahhahahahhahahahhahhahahahhahahahhahhahahahhahahahhahhahahahhahahahhahhahahahha" textFill="WHITE" wrapText="true">
+         <font>
+            <Font name="Calibri Bold" size="20.0" />
+         </font>
+         <VBox.margin>
+            <Insets top="7.0" />
+         </VBox.margin>
+      </Label>
+   </children>
+   <padding>
+      <Insets bottom="7.0" left="20.0" right="20.0" top="7.0" />
+   </padding>
+   <cursor>
+      <Cursor fx:constant="HAND" />
+   </cursor>
+</VBox>

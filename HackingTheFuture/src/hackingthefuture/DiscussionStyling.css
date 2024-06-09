@@ -1,0 +1,48 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 21 May 2024, 6:34:13 pm
+    Author     : Asus
+*/
+
+.text-area{
+    -fx-background-radius: 20;
+    -fx-control-inner-background: transparent;
+    -fx-background-color:   rgba(196,196,196,0.65);
+
+    -fx-font-family: "Times New Roman";
+    -fx-font-weight: bold;
+    -fx-font-size: 30;
+    -fx-text-fill: #FFFFFF;
+}
+
+.text-area .scroll-pane .scroll-bar:vertical,
+.text-area .scroll-pane .scroll-bar:vertical .track,
+.text-area .scroll-pane .scroll-bar:vertical .track-background{
+    -fx-background-color: transparent;
+    -fx-padding: 0 8 0 0;
+}
+
+.text-area .scroll-pane .scroll-bar:vertical {
+    -fx-background-insets: 0;
+}
+
+.text-area .scroll-pane .scroll-bar:vertical .thumb {
+    -fx-background-color: rgba(196,196,196,0.75); 
+    -fx-background-radius: 10;
+    -fx-padding: 5;
+}
+
+.text-area .scroll-pane .scroll-bar .increment-button,
+.text-area .scroll-pane .scroll-bar .decrement-button {
+    -fx-opacity: 0;
+    -fx-padding: 0;
+}
+
+#Empty{
+    -fx-border-color : #ff0202;
+    -fx-border-width : 3px;
+    -fx-effect : dropshadow(three-pass-box,#ff5454,5,0,0,4);
+}

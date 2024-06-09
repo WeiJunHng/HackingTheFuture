@@ -1,0 +1,26 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 6 Jun 2024, 10:39:04 pm
+    Author     : Asus
+*/
+
+#Error {
+     -fx-background-color: linear-gradient(to top, #EAABAB, #EAE1E1);
+     -fx-border-color: #ff284c;
+}
+
+#ErrorBtn{
+     -fx-background-color:  #D14C4C;
+}
+
+#Success {
+     -fx-background-color:  linear-gradient(to top, #b5e2b0, #EAE1E1);
+     -fx-border-color: #239f2c;
+}
+
+#SuccessBtn{
+     -fx-background-color:   #4cd162;
+}

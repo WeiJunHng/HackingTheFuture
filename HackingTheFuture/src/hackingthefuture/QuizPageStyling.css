@@ -1,0 +1,134 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 12 May 2024, 12:30:03 am
+    Author     : Asus
+*/
+
+.cardBg{
+    -fx-background-radius: 20;
+    -fx-background-color: linear-gradient(to top, rgba(0,0,0,0.65), rgba(168,50,149,0.55));
+    -fx-border-radius: 20;
+    -fx-border-width: 0.7;
+    -fx-border-color: #FFFFFF;
+}
+
+.cardBg TextField{
+    -fx-background-radius: 15;
+    -fx-background-color:  rgba(196,196,196,0.45);
+    -fx-pref-width: 550;
+    -fx-pref-height: 45;
+    -fx-padding: 0 17 0 17;
+
+    -fx-font-family: "Times New Roman";
+    -fx-font-weight: bold;
+    -fx-font-size: 30;
+    -fx-text-fill: #FFFFFF;
+}
+
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+
+.text-area{
+    -fx-background-radius: 20;
+    -fx-control-inner-background: transparent;
+    -fx-background-color:  rgba(196,196,196,0.45);
+    -fx-pref-width: 550;
+    -fx-pref-height: 120;
+
+    -fx-font-family: "Times New Roman";
+    -fx-font-weight: bold;
+    -fx-font-size: 30;
+    -fx-text-fill: #FFFFFF;
+}
+
+.text-area .scroll-pane .scroll-bar:vertical,
+.text-area .scroll-pane .scroll-bar:vertical .track,
+.text-area .scroll-pane .scroll-bar:vertical .track-background{
+    -fx-background-color: transparent;
+    -fx-padding: 0 8 0 0;
+}
+
+.text-area .scroll-pane .scroll-bar:vertical {
+    -fx-background-insets: 0;
+}
+
+.text-area .scroll-pane .scroll-bar:vertical .thumb {
+    -fx-background-color: rgba(196,196,196,0.75); 
+    -fx-background-radius: 10;
+    -fx-padding: 5;
+}
+
+.text-area .scroll-pane .scroll-bar .increment-button,
+.text-area .scroll-pane .scroll-bar .decrement-button {
+    -fx-opacity: 0;
+    -fx-padding: 0;
+}
+
+.split-menu-button {
+    -fx-background-color: transparent; 
+    -fx-background-radius: 15px;
+    -fx-pref-width: 550;
+    -fx-pref-height: 45;
+}
+
+.split-menu-button > .arrow-button {
+    -fx-background-color: rgba(220,220,220,1); 
+    -fx-border-color: transparent; 
+    -fx-background-radius:  0 15 15 0;
+    -fx-pref-width: 45;
+}
+
+.split-menu-button > .arrow-button:hover {
+    -fx-cursor: hand;
+    -fx-background-color: rgba(196,196,196,1);
+}
+
+.split-menu-button > .arrow-button > .arrow {
+    -fx-background-color: rgba(75,75,75,1);
+    -fx-pref-width: 15;
+    -fx-pref-height: 11;
+}
+
+.split-menu-button .label {
+    -fx-background-color: transparent;
+    -fx-font-family: "Times New Roman";
+    -fx-font-weight: bold;
+    -fx-font-size: 27;
+    -fx-text-fill: #FFFFFF;
+}
+
+.shadow{
+    -fx-effect : dropshadow(three-pass-box, #000000 ,7.0,0.0,2.0,3.0);
+}
+
+#Science{
+    -fx-background-color: #477D58;
+}
+
+#Technology{
+    -fx-background-color: #3c575c;
+}
+
+#Engineering{
+    -fx-background-color: #7D7047;
+}
+
+#Mathematics{
+    -fx-background-color: #624982;
+}
+
+#StudentDone{
+    -fx-background-color:  linear-gradient(to top, rgba(217,217,217,0.8),  rgba(228,120,136,0.9));
+}
+
+#StudentNotDone{
+    -fx-background-color:   linear-gradient(to top, rgba(217,217,217,0.8),  rgba(98,227,139,1));
+}
+
+#Educator{
+    -fx-background-color: linear-gradient(to top, rgba(217,217,217,0.8),  rgba(96,255,255,0.9));
+}

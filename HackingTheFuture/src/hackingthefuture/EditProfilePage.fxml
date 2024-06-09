@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="TOP_CENTER" prefHeight="470.0" prefWidth="750.0" spacing="20.0" style="-fx-background-color: linear-gradient(to top, rgba(0,0,0,1), rgba(168,50,149,1)); -fx-background-radius: 20; -fx-border-color: white; -fx-border-radius: 20; -fx-border-width: 1;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hackingthefuture.EditProfilePageController">
+   <children>
+      <VBox alignment="CENTER" prefWidth="918.0" spacing="20.0">
+         <children>
+            <HBox alignment="CENTER_LEFT">
+               <children>
+                  <Label alignment="CENTER" prefHeight="62.0" prefWidth="1234.0" styleClass="shadow" stylesheets="@ProfileStyling.css" text="EDIT PROFILE" textFill="WHITE" underline="true">
+                     <font>
+                        <Font name="Stencil" size="50.0" />
+                     </font>
+                     <padding>
+                        <Insets left="60.0" />
+                     </padding>
+                  </Label>
+                  <Button fx:id="closeBtn" mnemonicParsing="false" style="-fx-background-color: transparent;" styleClass="shadow" stylesheets="@ProfileStyling.css">
+                     <graphic>
+                        <ImageView fitHeight="41.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Resources/Images/menu-cross.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+               </children>
+            </HBox>
+            <VBox fx:id="friendPaneForCurrentUser" spacing="1.0">
+               <children>
+                  <HBox alignment="CENTER">
+                     <children>
+                        <Button fx:id="switchUsernameBtn" maxWidth="-Infinity" mnemonicParsing="false" prefWidth="167.2" style="-fx-background-radius: 20 20 0 0; -fx-opacity: 1;" styleClass="PaneBtn" stylesheets="@ProfileStyling.css" textFill="WHITE">
+                           <font>
+                              <Font name="Stencil" size="21.0" />
+                           </font>
+                           <graphic>
+                              <Label style="-fx-opacity: 1;" styleClass="shadow" text="Username" textFill="WHITE">
+                                 <font>
+                                    <Font name="Cooper Black" size="27.0" />
+                                 </font>
+                              </Label>
+                           </graphic>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <Button fx:id="switchEmailBtn" maxWidth="409.2" mnemonicParsing="false" prefWidth="167.2" style="-fx-background-radius: 20 20 0 0; -fx-opacity: 1;" styleClass="PaneBtn" stylesheets="@ProfileStyling.css" textFill="WHITE">
+                           <font>
+                              <Font name="Stencil" size="21.0" />
+                           </font>
+                           <graphic>
+                              <Label style="-fx-opacity: 1;" styleClass="shadow" text="Email" textFill="WHITE">
+                                 <font>
+                                    <Font name="Cooper Black" size="27.0" />
+                                 </font>
+                              </Label>
+                           </graphic>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <Button fx:id="switchPwBtn" maxWidth="409.2" mnemonicParsing="false" prefWidth="167.2" style="-fx-background-radius: 20 20 0 0; -fx-opacity: 1;" styleClass="PaneBtn" stylesheets="@ProfileStyling.css" textFill="WHITE">
+                           <font>
+                              <Font name="Stencil" size="21.0" />
+                           </font>
+                           <graphic>
+                              <Label style="-fx-opacity: 1;" styleClass="shadow" text="Password" textFill="WHITE">
+                                 <font>
+                                    <Font name="Cooper Black" size="27.0" />
+                                 </font>
+                              </Label>
+                           </graphic>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <Button fx:id="switchKinBtn" maxWidth="409.2" mnemonicParsing="false" prefWidth="167.2" style="-fx-background-radius: 20 20 0 0; -fx-opacity: 1;" styleClass="PaneBtn" stylesheets="@ProfileStyling.css" textFill="WHITE">
+                           <font>
+                              <Font name="Stencil" size="21.0" />
+                           </font>
+                           <graphic>
+                              <Label style="-fx-opacity: 1;" styleClass="shadow" text="Children" textFill="WHITE">
+                                 <font>
+                                    <Font name="Cooper Black" size="27.0" />
+                                 </font>
+                              </Label>
+                           </graphic>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <StackPane fx:id="backgroundStackPane" prefHeight="300.0" style="-fx-background-color: rgba(196,196,196,0.7); -fx-background-radius: 20 0 20 20;" styleClass="bg">
+                     <children>
+                        <VBox fx:id="editUsernameBox" alignment="CENTER" spacing="20.0" visible="false">
+                           <children>
+                              <HBox alignment="CENTER" spacing="20.0">
+                                 <children>
+                                    <Label alignment="CENTER_RIGHT" prefHeight="35.0" styleClass="shadow" text="New Username" textAlignment="RIGHT" textFill="WHITE">
+                                       <font>
+                                          <Font name="Cooper Black" size="30.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="newUsernameTF" prefWidth="350.0" promptText="New Username" style="-fx-background-radius: 30; -fx-effect: dropshadow(three-pass-box, #000000 ,8.0,0.0,1.0,4.0);">
+                                       <font>
+                                          <Font name="Times New Roman Bold" size="20.0" />
+                                       </font>
+                                    </TextField>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" spacing="20.0">
+                                 <children>
+                                    <Label alignment="CENTER_RIGHT" prefHeight="35.0" prefWidth="231.2" styleClass="shadow" text="Password" textAlignment="RIGHT" textFill="WHITE">
+                                       <font>
+                                          <Font name="Cooper Black" size="30.0" />
+                                       </font>
+                                    </Label>
+                                    <StackPane>
+                                       <children>
+                                          <TextField fx:id="editUsernamePwTF" prefWidth="350.0" promptText="Password" style="-fx-background-radius: 30; -fx-effect: dropshadow(three-pass-box, #000000 ,8.0,0.0,1.0,4.0);" visible="false">
+                                             <font>
+                                                <Font name="Times New Roman Bold" size="20.0" />
+                                             </font>
+                                          </TextField>
+                                          <PasswordField fx:id="editUsernamePwPF" prefWidth="320.0" promptText="Password">
+                                             <font>
+                                                <Font name="Times New Roman Bold" size="20.0" />
+                                             </font>
+                                          </PasswordField>
+                                       </children>
+                                    </StackPane>
+                                 </children>
+                              </HBox>
+                              <Button fx:id="usernameSaveBtn" mnemonicParsing="false" prefHeight="39.0" prefWidth="104.0" styleClass="editBtn" stylesheets="@ProfileStyling.css" textFill="WHITE">
+                                 <font>
+                                    <Font name="Cooper Black" size="13.0" />
+                                 </font>
+                                 <graphic>
+                                    <Label text="Save" textFill="WHITE">
+                                       <font>
+                                          <Font name="Cooper Black" size="23.0" />
+                                       </font>
+                                    </Label>
+                                 </graphic>
+                                 <VBox.margin>
+                                    <Insets top="30.0" />
+                                 </VBox.margin>
+                              </Button>
+                           </children>
+                        </VBox>
+                        <VBox fx:id="editEmailBox" alignment="CENTER" spacing="20.0" visible="false">
+                           <children>
+                              <HBox alignment="CENTER" spacing="20.0">
+                                 <children>
+                                    <Label alignment="CENTER_RIGHT" prefHeight="35.0" styleClass="shadow" text="New Email" textAlignment="RIGHT" textFill="WHITE">
+                                       <font>
+                                          <Font name="Cooper Black" size="30.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="newEmailTF" prefWidth="350.0" promptText="New Email Address" style="-fx-background-radius: 30; -fx-effect: dropshadow(three-pass-box, #000000 ,8.0,0.0,1.0,4.0);">
+                                       <font>
+                                          <Font name="Times New Roman Bold" size="20.0" />
+                                       </font>
+                                    </TextField>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" spacing="20.0">
+                                 <children>
+                                    <Label alignment="CENTER_RIGHT" prefHeight="35.0" prefWidth="166.4" styleClass="shadow" text="Password" textAlignment="RIGHT" textFill="WHITE">
+                                       <font>
+                                          <Font name="Cooper Black" size="30.0" />
+                                       </font>
+                                    </Label>
+                                    <StackPane>
+                                       <children>
+                                          <TextField fx:id="editEmailPwTF" prefWidth="350.0" promptText="Password" style="-fx-background-radius: 30; -fx-effect: dropshadow(three-pass-box, #000000 ,8.0,0.0,1.0,4.0);" visible="false">
+                                             <font>
+                                                <Font name="Times New Roman Bold" size="20.0" />
+                                             </font>
+                                          </TextField>
+                                          <PasswordField fx:id="editEmailPwPF" prefWidth="320.0" promptText="Password">
+                                             <font>
+                                                <Font name="Times New Roman Bold" size="20.0" />
+                                             </font>
+                                          </PasswordField>
+                                       </children>
+                                    </StackPane>
+                                 </children>
+                              </HBox>
+                              <Button fx:id="emailSaveBtn" mnemonicParsing="false" prefHeight="39.0" prefWidth="104.0" styleClass="editBtn" stylesheets="@ProfileStyling.css" textFill="WHITE">
+                                 <font>
+                                    <Font name="Cooper Black" size="13.0" />
+                                 </font>
+                                 <graphic>
+                                    <Label text="Save" textFill="WHITE">
+                                       <font>
+                                          <Font name="Cooper Black" size="23.0" />
+                                       </font>
+                                    </Label>
+                                 </graphic>
+                                 <VBox.margin>
+                                    <Insets top="30.0" />
+                                 </VBox.margin>
+                              </Button>
+                           </children>
+                        </VBox>
+                        <VBox fx:id="editPwBox" alignment="CENTER" spacing="20.0" visible="false">
+                           <children>
+                              <HBox alignment="CENTER" spacing="20.0">
+                                 <children>
+                                    <Label alignment="CENTER_RIGHT" prefHeight="35.0" prefWidth="256.8" styleClass="shadow" text="Old Password" textAlignment="RIGHT" textFill="WHITE">
+                                       <font>
+                                          <Font name="Cooper Black" size="27.0" />
+                                       </font>
+                                    </Label>
+                                    <StackPane>
+                                       <children>
+                                          <TextField fx:id="oldPwTF" prefWidth="320.0" promptText="Old Password" style="-fx-background-radius: 30; -fx-effect: dropshadow(three-pass-box, #000000 ,8.0,0.0,1.0,4.0);" visible="false">
+                                             <font>
+                                                <Font name="Times New Roman Bold" size="20.0" />
+                                             </font>
+                                          </TextField>
+                                          <PasswordField fx:id="oldPwPF" prefWidth="320.0" promptText="Old Password">
+                                             <font>
+                                                <Font name="Times New Roman Bold" size="20.0" />
+                                             </font>
+                                          </PasswordField>
+                                       </children>
+                                    </StackPane>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" spacing="20.0">
+                                 <children>
+                                    <Label alignment="CENTER_RIGHT" prefHeight="35.0" prefWidth="256.8" styleClass="shadow" text="New Password" textAlignment="RIGHT" textFill="WHITE">
+                                       <font>
+                                          <Font name="Cooper Black" size="27.0" />
+                                       </font>
+                                    </Label>
+                                    <StackPane>
+                                       <children>
+                                          <TextField fx:id="newPwTF" prefWidth="320.0" promptText="New Password" style="-fx-background-radius: 30; -fx-effect: dropshadow(three-pass-box, #000000 ,8.0,0.0,1.0,4.0);" visible="false">
+                                             <font>
+                                                <Font name="Times New Roman Bold" size="20.0" />
+                                             </font>
+                                          </TextField>
+                                          <PasswordField fx:id="newPwPF" prefWidth="320.0" promptText="New Password">
+                                             <font>
+                                                <Font name="Times New Roman Bold" size="20.0" />
+                                             </font>
+                                          </PasswordField>
+                                       </children>
+                                    </StackPane>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" spacing="20.0">
+                                 <children>
+                                    <Label alignment="CENTER_RIGHT" prefHeight="35.0" styleClass="shadow" text="Confirm Password" textAlignment="RIGHT" textFill="WHITE">
+                                       <font>
+                                          <Font name="Cooper Black" size="27.0" />
+                                       </font>
+                                    </Label>
+                                    <StackPane>
+                                       <children>
+                                          <TextField fx:id="confirmPwTF" prefWidth="320.0" promptText="Confirm Password" style="-fx-background-radius: 30; -fx-effect: dropshadow(three-pass-box, #000000 ,8.0,0.0,1.0,4.0);" visible="false">
+                                             <font>
+                                                <Font name="Times New Roman Bold" size="20.0" />
+                                             </font>
+                                          </TextField>
+                                          <PasswordField fx:id="confirmPwPF" prefWidth="320.0" promptText="Confirm Password">
+                                             <font>
+                                                <Font name="Times New Roman Bold" size="20.0" />
+                                             </font>
+                                          </PasswordField>
+                                       </children>
+                                    </StackPane>
+                                 </children>
+                              </HBox>
+                              <Button fx:id="pwSaveBtn" mnemonicParsing="false" prefHeight="39.0" prefWidth="104.0" styleClass="editBtn" stylesheets="@ProfileStyling.css" textFill="WHITE">
+                                 <font>
+                                    <Font name="Cooper Black" size="13.0" />
+                                 </font>
+                                 <graphic>
+                                    <Label text="Save" textFill="WHITE">
+                                       <font>
+                                          <Font name="Cooper Black" size="23.0" />
+                                       </font>
+                                    </Label>
+                                 </graphic>
+                                 <VBox.margin>
+                                    <Insets top="30.0" />
+                                 </VBox.margin>
+                              </Button>
+                           </children>
+                        </VBox>
+                        <VBox fx:id="editKinBox" alignment="CENTER" spacing="20.0">
+                           <children>
+                              <HBox alignment="CENTER" spacing="20.0">
+                                 <children>
+                                    <VBox prefHeight="71.0" prefWidth="425.0" spacing="10.0">
+                                       <children>
+                                          <Label alignment="CENTER_RIGHT" prefHeight="35.0" styleClass="shadow" text="New Children Email" textAlignment="RIGHT" textFill="WHITE">
+                                             <font>
+                                                <Font name="Cooper Black" size="27.0" />
+                                             </font>
+                                             <VBox.margin>
+                                                <Insets left="3.0" />
+                                             </VBox.margin>
+                                          </Label>
+                                          <TextField fx:id="kinEmailTF" prefWidth="350.0" promptText="Email Address" style="-fx-background-radius: 30; -fx-effect: dropshadow(three-pass-box, #000000 ,8.0,0.0,1.0,4.0);">
+                                             <font>
+                                                <Font name="Times New Roman Bold" size="20.0" />
+                                             </font>
+                                          </TextField>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                              <Button fx:id="kinSaveBtn" mnemonicParsing="false" prefHeight="39.0" prefWidth="104.0" styleClass="editBtn" stylesheets="@ProfileStyling.css" textFill="WHITE">
+                                 <font>
+                                    <Font name="Cooper Black" size="13.0" />
+                                 </font>
+                                 <graphic>
+                                    <Label text="Save" textFill="WHITE">
+                                       <font>
+                                          <Font name="Cooper Black" size="23.0" />
+                                       </font>
+                                    </Label>
+                                 </graphic>
+                                 <VBox.margin>
+                                    <Insets top="30.0" />
+                                 </VBox.margin>
+                              </Button>
+                           </children>
+                        </VBox>
+                     </children>
+                  </StackPane>
+               </children>
+            </VBox>
+         </children>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+      </VBox>
+   </children>
+   <padding>
+      <Insets left="40.0" right="40.0" top="10.0" />
+   </padding>
+   <stylesheets>
+      <URL value="@QuizPageStyling.css" />
+      <URL value="@FriendPageStyling.css" />
+      <URL value="@ProfileStyling.css" />
+      <URL value="@EditProfileStyling.css" />
+   </stylesheets>
+</VBox>

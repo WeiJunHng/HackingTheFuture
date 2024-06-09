@@ -1,0 +1,754 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="TOP_CENTER" prefHeight="520.0" prefWidth="901.0" spacing="20.0" style="-fx-background-color: linear-gradient(to top, rgba(0,0,0,1), rgba(168,50,149,1)); -fx-background-radius: 20; -fx-border-color: white; -fx-border-radius: 20; -fx-border-width: 1;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hackingthefuture.FriendPageController">
+   <children>
+      <VBox alignment="CENTER" prefWidth="918.0" spacing="20.0">
+         <children>
+            <HBox alignment="CENTER_LEFT">
+               <children>
+                  <Label alignment="CENTER" prefHeight="62.0" prefWidth="1234.0" styleClass="shadow" stylesheets="@ProfileStyling.css" text="FRIENDS" textFill="WHITE" underline="true">
+                     <font>
+                        <Font name="Stencil" size="50.0" />
+                     </font>
+                     <padding>
+                        <Insets left="60.0" />
+                     </padding>
+                  </Label>
+                  <Button fx:id="closeBtn" mnemonicParsing="false" style="-fx-background-color: transparent;" styleClass="shadow" stylesheets="@ProfileStyling.css">
+                     <graphic>
+                        <ImageView fitHeight="41.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Resources/Images/menu-cross.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+               </children>
+            </HBox>
+            <StackPane>
+               <children>
+                  <VBox fx:id="friendPaneForCurrentUser" spacing="1.0" visible="false">
+                     <children>
+                        <HBox alignment="CENTER">
+                           <children>
+                              <Button fx:id="switchFriendBtn" maxWidth="409.2" minWidth="409.2" mnemonicParsing="false" prefWidth="409.2" style="-fx-background-radius: 20 20 0 0; -fx-opacity: 1;" styleClass="PaneBtn" stylesheets="@ProfileStyling.css" textFill="WHITE">
+                                 <font>
+                                    <Font name="Stencil" size="21.0" />
+                                 </font>
+                                 <graphic>
+                                    <Label style="-fx-opacity: 1;" styleClass="shadow" text="Your Friend" textFill="WHITE">
+                                       <font>
+                                          <Font name="Cooper Black" size="29.0" />
+                                       </font>
+                                    </Label>
+                                 </graphic>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                              <Button fx:id="switchFriendRequestBtn" maxWidth="409.2" minWidth="409.2" mnemonicParsing="false" prefWidth="409.2" style="-fx-background-radius: 20 20 0 0; -fx-opacity: 1;" styleClass="PaneBtn" stylesheets="@ProfileStyling.css" textFill="WHITE">
+                                 <font>
+                                    <Font name="Stencil" size="21.0" />
+                                 </font>
+                                 <graphic>
+                                    <Label style="-fx-opacity: 1;" styleClass="shadow" text="Friend Request" textFill="WHITE">
+                                       <font>
+                                          <Font name="Cooper Black" size="29.0" />
+                                       </font>
+                                    </Label>
+                                 </graphic>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                           </children>
+                        </HBox>
+                        <StackPane fx:id="backgroundStackPane" style="-fx-background-color: rgba(196,196,196,0.7); -fx-background-radius: 20 0 20 20;">
+                           <children>
+                              <ScrollPane fx:id="friendPane" hbarPolicy="NEVER" maxHeight="450.0" maxWidth="800.0" prefHeight="342.0" prefWidth="800.0" style="-fx-background-color: transparent; -fx-background-radius: 15;" visible="false">
+                                 <content>
+                                    <VBox fx:id="friendVBox" alignment="CENTER" minHeight="44.0" prefWidth="800.0" spacing="10.0" style="-fx-alignment: top-center;" styleClass="box" stylesheets="@FriendPageStyling.css">
+                                       <children>
+                                          <Hyperlink fx:id="link" focusTraversable="false" maxHeight="45.0" prefHeight="45.0" styleClass="shadow" text="Hyperlink">
+                                             <stylesheets>
+                                                <URL value="@ProfileStyling.css" />
+                                                <URL value="@FriendPageStyling.css" />
+                                             </stylesheets>
+                                          </Hyperlink>
+                                          <Hyperlink fx:id="link2" focusTraversable="false" maxHeight="45.0" prefHeight="45.0" styleClass="shadow" stylesheets="@ProfileStyling.css" text="Hyperlink" />
+                                          <Hyperlink fx:id="link3" focusTraversable="false" maxHeight="45.0" prefHeight="45.0" styleClass="shadow" stylesheets="@ProfileStyling.css" text="Hyperlink" />
+                                          <Hyperlink fx:id="link4" focusTraversable="false" maxHeight="45.0" prefHeight="45.0" styleClass="shadow" stylesheets="@ProfileStyling.css" text="Hyperlink" />
+                                          <Hyperlink fx:id="link5" focusTraversable="false" maxHeight="45.0" prefHeight="45.0" styleClass="shadow" stylesheets="@ProfileStyling.css" text="Hyperlink" />
+                                          <Hyperlink fx:id="link6" focusTraversable="false" maxHeight="45.0" prefHeight="45.0" styleClass="shadow" stylesheets="@ProfileStyling.css" text="Hyperlink" />
+                                          <Hyperlink fx:id="link7" focusTraversable="false" maxHeight="45.0" prefHeight="45.0" styleClass="shadow" stylesheets="@ProfileStyling.css" text="Hyperlink" />
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="5.0" top="5.0" />
+                                       </padding>
+                                    </VBox>
+                                 </content>
+                              </ScrollPane>
+                              <ScrollPane fx:id="friendRequestPane" hbarPolicy="NEVER" maxHeight="450.0" maxWidth="800.0" prefHeight="342.0" prefWidth="800.0" style="-fx-background-color: transparent; -fx-background-radius: 15;" visible="false">
+                                 <content>
+                                    <VBox fx:id="friendRequestVBox" minHeight="44.0" spacing="10.0" stylesheets="@FriendPageStyling.css">
+                                       <children>
+                                          <HBox alignment="CENTER_LEFT" spacing="15.0" styleClass="box" stylesheets="@FriendPageStyling.css">
+                                             <children>
+                                                <Hyperlink fx:id="link1" focusTraversable="false" maxHeight="58.0" prefHeight="58.0" prefWidth="446.0" styleClass="shadow" stylesheets="@ProfileStyling.css" text="Username" />
+                                                <Button mnemonicParsing="false" style="-fx-background-color: #4FC8AB; -fx-background-radius: 20;" styleClass="shadow" stylesheets="@ProfileStyling.css">
+                                                   <graphic>
+                                                      <HBox alignment="CENTER_LEFT" spacing="3.0">
+                                                         <children>
+                                                            <ImageView fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                  <Image url="@../Resources/Images/confirm-icon.png" />
+                                                               </image>
+                                                            </ImageView>
+                                                            <Label text="Confirm" textFill="WHITE">
+                                                               <font>
+                                                                  <Font name="Segoe UI Bold" size="24.0" />
+                                                               </font>
+                                                            </Label>
+                                                         </children>
+                                                         <padding>
+                                                            <Insets left="7.0" right="5.0" />
+                                                         </padding>
+                                                      </HBox>
+                                                   </graphic>
+                                                   <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                   </cursor>
+                                                </Button>
+                                                <Button mnemonicParsing="false" style="-fx-background-color: #FF3131; -fx-background-radius: 20;" styleClass="shadow" stylesheets="@ProfileStyling.css">
+                                                   <graphic>
+                                                      <HBox alignment="CENTER_LEFT" spacing="3.0">
+                                                         <children>
+                                                            <ImageView fitHeight="25.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                  <Image url="@../Resources/Images/menu-cross.png" />
+                                                               </image>
+                                                            </ImageView>
+                                                            <Label text="Delete" textFill="WHITE">
+                                                               <font>
+                                                                  <Font name="Segoe UI Bold" size="24.0" />
+                                                               </font>
+                                                            </Label>
+                                                         </children>
+                                                         <padding>
+                                                            <Insets bottom="1.0" left="7.0" right="5.0" />
+                                                         </padding>
+                                                      </HBox>
+                                                   </graphic>
+                                                   <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                   </cursor>
+                                                </Button>
+                                             </children>
+                                             <VBox.margin>
+                                                <Insets />
+                                             </VBox.margin>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" spacing="15.0" styleClass="box" stylesheets="@FriendPageStyling.css">
+                                             <children>
+                                                <Hyperlink fx:id="link11" focusTraversable="false" maxHeight="58.0" prefHeight="58.0" prefWidth="446.0" styleClass="shadow" stylesheets="@ProfileStyling.css" text="Username" />
+                                                <Button mnemonicParsing="false" style="-fx-background-color: #4FC8AB; -fx-background-radius: 20;" styleClass="shadow" stylesheets="@ProfileStyling.css">
+                                                   <graphic>
+                                                      <HBox alignment="CENTER_LEFT" spacing="3.0">
+                                                         <children>
+                                                            <ImageView fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                  <Image url="@../Resources/Images/confirm-icon.png" />
+                                                               </image>
+                                                            </ImageView>
+                                                            <Label text="Confirm" textFill="WHITE">
+                                                               <font>
+                                                                  <Font name="Segoe UI Bold" size="24.0" />
+                                                               </font>
+                                                            </Label>
+                                                         </children>
+                                                         <padding>
+                                                            <Insets left="7.0" right="5.0" />
+                                                         </padding>
+                                                      </HBox>
+                                                   </graphic>
+                                                   <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                   </cursor>
+                                                </Button>
+                                                <Button mnemonicParsing="false" style="-fx-background-color: #FF3131; -fx-background-radius: 20;" styleClass="shadow" stylesheets="@ProfileStyling.css">
+                                                   <graphic>
+                                                      <HBox alignment="CENTER_LEFT" spacing="3.0">
+                                                         <children>
+                                                            <ImageView fitHeight="25.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                  <Image url="@../Resources/Images/menu-cross.png" />
+                                                               </image>
+                                                            </ImageView>
+                                                            <Label text="Delete" textFill="WHITE">
+                                                               <font>
+                                                                  <Font name="Segoe UI Bold" size="24.0" />
+                                                               </font>
+                                                            </Label>
+                                                         </children>
+                                                         <padding>
+                                                            <Insets bottom="1.0" left="7.0" right="5.0" />
+                                                         </padding>
+                                                      </HBox>
+                                                   </graphic>
+                                                   <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                   </cursor>
+                                                </Button>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" spacing="15.0" styleClass="box" stylesheets="@FriendPageStyling.css">
+                                             <children>
+                                                <Hyperlink fx:id="link12" focusTraversable="false" maxHeight="58.0" prefHeight="58.0" prefWidth="446.0" styleClass="shadow" stylesheets="@ProfileStyling.css" text="Username" />
+                                                <Button mnemonicParsing="false" style="-fx-background-color: #4FC8AB; -fx-background-radius: 20;" styleClass="shadow" stylesheets="@ProfileStyling.css">
+                                                   <graphic>
+                                                      <HBox alignment="CENTER_LEFT" spacing="3.0">
+                                                         <children>
+                                                            <ImageView fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                  <Image url="@../Resources/Images/confirm-icon.png" />
+                                                               </image>
+                                                            </ImageView>
+                                                            <Label text="Confirm" textFill="WHITE">
+                                                               <font>
+                                                                  <Font name="Segoe UI Bold" size="24.0" />
+                                                               </font>
+                                                            </Label>
+                                                         </children>
+                                                         <padding>
+                                                            <Insets left="7.0" right="5.0" />
+                                                         </padding>
+                                                      </HBox>
+                                                   </graphic>
+                                                   <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                   </cursor>
+                                                </Button>
+                                                <Button mnemonicParsing="false" style="-fx-background-color: #FF3131; -fx-background-radius: 20;" styleClass="shadow" stylesheets="@ProfileStyling.css">
+                                                   <graphic>
+                                                      <HBox alignment="CENTER_LEFT" spacing="3.0">
+                                                         <children>
+                                                            <ImageView fitHeight="25.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                  <Image url="@../Resources/Images/menu-cross.png" />
+                                                               </image>
+                                                            </ImageView>
+                                                            <Label text="Delete" textFill="WHITE">
+                                                               <font>
+                                                                  <Font name="Segoe UI Bold" size="24.0" />
+                                                               </font>
+                                                            </Label>
+                                                         </children>
+                                                         <padding>
+                                                            <Insets bottom="1.0" left="7.0" right="5.0" />
+                                                         </padding>
+                                                      </HBox>
+                                                   </graphic>
+                                                   <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                   </cursor>
+                                                </Button>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" spacing="15.0" styleClass="box" stylesheets="@FriendPageStyling.css">
+                                             <children>
+                                                <Hyperlink fx:id="link13" focusTraversable="false" maxHeight="58.0" prefHeight="58.0" prefWidth="446.0" styleClass="shadow" stylesheets="@ProfileStyling.css" text="Username" />
+                                                <Button mnemonicParsing="false" style="-fx-background-color: #4FC8AB; -fx-background-radius: 20;" styleClass="shadow" stylesheets="@ProfileStyling.css">
+                                                   <graphic>
+                                                      <HBox alignment="CENTER_LEFT" spacing="3.0">
+                                                         <children>
+                                                            <ImageView fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                  <Image url="@../Resources/Images/confirm-icon.png" />
+                                                               </image>
+                                                            </ImageView>
+                                                            <Label text="Confirm" textFill="WHITE">
+                                                               <font>
+                                                                  <Font name="Segoe UI Bold" size="24.0" />
+                                                               </font>
+                                                            </Label>
+                                                         </children>
+                                                         <padding>
+                                                            <Insets left="7.0" right="5.0" />
+                                                         </padding>
+                                                      </HBox>
+                                                   </graphic>
+                                                   <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                   </cursor>
+                                                </Button>
+                                                <Button mnemonicParsing="false" style="-fx-background-color: #FF3131; -fx-background-radius: 20;" styleClass="shadow" stylesheets="@ProfileStyling.css">
+                                                   <graphic>
+                                                      <HBox alignment="CENTER_LEFT" spacing="3.0">
+                                                         <children>
+                                                            <ImageView fitHeight="25.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                  <Image url="@../Resources/Images/menu-cross.png" />
+                                                               </image>
+                                                            </ImageView>
+                                                            <Label text="Delete" textFill="WHITE">
+                                                               <font>
+                                                                  <Font name="Segoe UI Bold" size="24.0" />
+                                                               </font>
+                                                            </Label>
+                                                         </children>
+                                                         <padding>
+                                                            <Insets bottom="1.0" left="7.0" right="5.0" />
+                                                         </padding>
+                                                      </HBox>
+                                                   </graphic>
+                                                   <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                   </cursor>
+                                                </Button>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" spacing="15.0" styleClass="box" stylesheets="@FriendPageStyling.css">
+                                             <children>
+                                                <Hyperlink fx:id="link14" focusTraversable="false" maxHeight="58.0" prefHeight="58.0" prefWidth="446.0" styleClass="shadow" stylesheets="@ProfileStyling.css" text="Username" />
+                                                <Button mnemonicParsing="false" style="-fx-background-color: #4FC8AB; -fx-background-radius: 20;" styleClass="shadow" stylesheets="@ProfileStyling.css">
+                                                   <graphic>
+                                                      <HBox alignment="CENTER_LEFT" spacing="3.0">
+                                                         <children>
+                                                            <ImageView fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                  <Image url="@../Resources/Images/confirm-icon.png" />
+                                                               </image>
+                                                            </ImageView>
+                                                            <Label text="Confirm" textFill="WHITE">
+                                                               <font>
+                                                                  <Font name="Segoe UI Bold" size="24.0" />
+                                                               </font>
+                                                            </Label>
+                                                         </children>
+                                                         <padding>
+                                                            <Insets left="7.0" right="5.0" />
+                                                         </padding>
+                                                      </HBox>
+                                                   </graphic>
+                                                   <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                   </cursor>
+                                                </Button>
+                                                <Button mnemonicParsing="false" style="-fx-background-color: #FF3131; -fx-background-radius: 20;" styleClass="shadow" stylesheets="@ProfileStyling.css">
+                                                   <graphic>
+                                                      <HBox alignment="CENTER_LEFT" spacing="3.0">
+                                                         <children>
+                                                            <ImageView fitHeight="25.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                  <Image url="@../Resources/Images/menu-cross.png" />
+                                                               </image>
+                                                            </ImageView>
+                                                            <Label text="Delete" textFill="WHITE">
+                                                               <font>
+                                                                  <Font name="Segoe UI Bold" size="24.0" />
+                                                               </font>
+                                                            </Label>
+                                                         </children>
+                                                         <padding>
+                                                            <Insets bottom="1.0" left="7.0" right="5.0" />
+                                                         </padding>
+                                                      </HBox>
+                                                   </graphic>
+                                                   <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                   </cursor>
+                                                </Button>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" spacing="15.0" styleClass="box" stylesheets="@FriendPageStyling.css">
+                                             <children>
+                                                <Hyperlink fx:id="link15" focusTraversable="false" maxHeight="58.0" prefHeight="58.0" prefWidth="446.0" styleClass="shadow" stylesheets="@ProfileStyling.css" text="Username" />
+                                                <Button mnemonicParsing="false" style="-fx-background-color: #4FC8AB; -fx-background-radius: 20;" styleClass="shadow" stylesheets="@ProfileStyling.css">
+                                                   <graphic>
+                                                      <HBox alignment="CENTER_LEFT" spacing="3.0">
+                                                         <children>
+                                                            <ImageView fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                  <Image url="@../Resources/Images/confirm-icon.png" />
+                                                               </image>
+                                                            </ImageView>
+                                                            <Label text="Confirm" textFill="WHITE">
+                                                               <font>
+                                                                  <Font name="Segoe UI Bold" size="24.0" />
+                                                               </font>
+                                                            </Label>
+                                                         </children>
+                                                         <padding>
+                                                            <Insets left="7.0" right="5.0" />
+                                                         </padding>
+                                                      </HBox>
+                                                   </graphic>
+                                                   <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                   </cursor>
+                                                </Button>
+                                                <Button mnemonicParsing="false" style="-fx-background-color: #FF3131; -fx-background-radius: 20;" styleClass="shadow" stylesheets="@ProfileStyling.css">
+                                                   <graphic>
+                                                      <HBox alignment="CENTER_LEFT" spacing="3.0">
+                                                         <children>
+                                                            <ImageView fitHeight="25.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                  <Image url="@../Resources/Images/menu-cross.png" />
+                                                               </image>
+                                                            </ImageView>
+                                                            <Label text="Delete" textFill="WHITE">
+                                                               <font>
+                                                                  <Font name="Segoe UI Bold" size="24.0" />
+                                                               </font>
+                                                            </Label>
+                                                         </children>
+                                                         <padding>
+                                                            <Insets bottom="1.0" left="7.0" right="5.0" />
+                                                         </padding>
+                                                      </HBox>
+                                                   </graphic>
+                                                   <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                   </cursor>
+                                                </Button>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" spacing="15.0" styleClass="box" stylesheets="@FriendPageStyling.css">
+                                             <children>
+                                                <Hyperlink fx:id="link16" focusTraversable="false" maxHeight="58.0" prefHeight="58.0" prefWidth="446.0" styleClass="shadow" stylesheets="@ProfileStyling.css" text="Username" />
+                                                <Button mnemonicParsing="false" style="-fx-background-color: #4FC8AB; -fx-background-radius: 20;" styleClass="shadow" stylesheets="@ProfileStyling.css">
+                                                   <graphic>
+                                                      <HBox alignment="CENTER_LEFT" spacing="3.0">
+                                                         <children>
+                                                            <ImageView fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                  <Image url="@../Resources/Images/confirm-icon.png" />
+                                                               </image>
+                                                            </ImageView>
+                                                            <Label text="Confirm" textFill="WHITE">
+                                                               <font>
+                                                                  <Font name="Segoe UI Bold" size="24.0" />
+                                                               </font>
+                                                            </Label>
+                                                         </children>
+                                                         <padding>
+                                                            <Insets left="7.0" right="5.0" />
+                                                         </padding>
+                                                      </HBox>
+                                                   </graphic>
+                                                   <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                   </cursor>
+                                                </Button>
+                                                <Button mnemonicParsing="false" style="-fx-background-color: #FF3131; -fx-background-radius: 20;" styleClass="shadow" stylesheets="@ProfileStyling.css">
+                                                   <graphic>
+                                                      <HBox alignment="CENTER_LEFT" spacing="3.0">
+                                                         <children>
+                                                            <ImageView fitHeight="25.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                  <Image url="@../Resources/Images/menu-cross.png" />
+                                                               </image>
+                                                            </ImageView>
+                                                            <Label text="Delete" textFill="WHITE">
+                                                               <font>
+                                                                  <Font name="Segoe UI Bold" size="24.0" />
+                                                               </font>
+                                                            </Label>
+                                                         </children>
+                                                         <padding>
+                                                            <Insets bottom="1.0" left="7.0" right="5.0" />
+                                                         </padding>
+                                                      </HBox>
+                                                   </graphic>
+                                                   <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                   </cursor>
+                                                </Button>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" spacing="15.0" styleClass="box" stylesheets="@FriendPageStyling.css">
+                                             <children>
+                                                <Hyperlink fx:id="link17" focusTraversable="false" maxHeight="58.0" prefHeight="58.0" prefWidth="446.0" styleClass="shadow" stylesheets="@ProfileStyling.css" text="Username" />
+                                                <Button mnemonicParsing="false" style="-fx-background-color: #4FC8AB; -fx-background-radius: 20;" styleClass="shadow" stylesheets="@ProfileStyling.css">
+                                                   <graphic>
+                                                      <HBox alignment="CENTER_LEFT" spacing="3.0">
+                                                         <children>
+                                                            <ImageView fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                  <Image url="@../Resources/Images/confirm-icon.png" />
+                                                               </image>
+                                                            </ImageView>
+                                                            <Label text="Confirm" textFill="WHITE">
+                                                               <font>
+                                                                  <Font name="Segoe UI Bold" size="24.0" />
+                                                               </font>
+                                                            </Label>
+                                                         </children>
+                                                         <padding>
+                                                            <Insets left="7.0" right="5.0" />
+                                                         </padding>
+                                                      </HBox>
+                                                   </graphic>
+                                                   <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                   </cursor>
+                                                </Button>
+                                                <Button mnemonicParsing="false" style="-fx-background-color: #FF3131; -fx-background-radius: 20;" styleClass="shadow" stylesheets="@ProfileStyling.css">
+                                                   <graphic>
+                                                      <HBox alignment="CENTER_LEFT" spacing="3.0">
+                                                         <children>
+                                                            <ImageView fitHeight="25.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                  <Image url="@../Resources/Images/menu-cross.png" />
+                                                               </image>
+                                                            </ImageView>
+                                                            <Label text="Delete" textFill="WHITE">
+                                                               <font>
+                                                                  <Font name="Segoe UI Bold" size="24.0" />
+                                                               </font>
+                                                            </Label>
+                                                         </children>
+                                                         <padding>
+                                                            <Insets bottom="1.0" left="7.0" right="5.0" />
+                                                         </padding>
+                                                      </HBox>
+                                                   </graphic>
+                                                   <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                   </cursor>
+                                                </Button>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" spacing="15.0" styleClass="box" stylesheets="@FriendPageStyling.css">
+                                             <children>
+                                                <Hyperlink fx:id="link18" focusTraversable="false" maxHeight="58.0" prefHeight="58.0" prefWidth="446.0" styleClass="shadow" stylesheets="@ProfileStyling.css" text="Username" />
+                                                <Button mnemonicParsing="false" style="-fx-background-color: #4FC8AB; -fx-background-radius: 20;" styleClass="shadow" stylesheets="@ProfileStyling.css">
+                                                   <graphic>
+                                                      <HBox alignment="CENTER_LEFT" spacing="3.0">
+                                                         <children>
+                                                            <ImageView fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                  <Image url="@../Resources/Images/confirm-icon.png" />
+                                                               </image>
+                                                            </ImageView>
+                                                            <Label text="Confirm" textFill="WHITE">
+                                                               <font>
+                                                                  <Font name="Segoe UI Bold" size="24.0" />
+                                                               </font>
+                                                            </Label>
+                                                         </children>
+                                                         <padding>
+                                                            <Insets left="7.0" right="5.0" />
+                                                         </padding>
+                                                      </HBox>
+                                                   </graphic>
+                                                   <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                   </cursor>
+                                                </Button>
+                                                <Button mnemonicParsing="false" style="-fx-background-color: #FF3131; -fx-background-radius: 20;" styleClass="shadow" stylesheets="@ProfileStyling.css">
+                                                   <graphic>
+                                                      <HBox alignment="CENTER_LEFT" spacing="3.0">
+                                                         <children>
+                                                            <ImageView fitHeight="25.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                  <Image url="@../Resources/Images/menu-cross.png" />
+                                                               </image>
+                                                            </ImageView>
+                                                            <Label text="Delete" textFill="WHITE">
+                                                               <font>
+                                                                  <Font name="Segoe UI Bold" size="24.0" />
+                                                               </font>
+                                                            </Label>
+                                                         </children>
+                                                         <padding>
+                                                            <Insets bottom="1.0" left="7.0" right="5.0" />
+                                                         </padding>
+                                                      </HBox>
+                                                   </graphic>
+                                                   <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                   </cursor>
+                                                </Button>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" spacing="15.0" styleClass="box" stylesheets="@FriendPageStyling.css">
+                                             <children>
+                                                <Hyperlink fx:id="link19" focusTraversable="false" maxHeight="58.0" prefHeight="58.0" prefWidth="446.0" styleClass="shadow" stylesheets="@ProfileStyling.css" text="Username" />
+                                                <Button mnemonicParsing="false" style="-fx-background-color: #4FC8AB; -fx-background-radius: 20;" styleClass="shadow" stylesheets="@ProfileStyling.css">
+                                                   <graphic>
+                                                      <HBox alignment="CENTER_LEFT" spacing="3.0">
+                                                         <children>
+                                                            <ImageView fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                  <Image url="@../Resources/Images/confirm-icon.png" />
+                                                               </image>
+                                                            </ImageView>
+                                                            <Label text="Confirm" textFill="WHITE">
+                                                               <font>
+                                                                  <Font name="Segoe UI Bold" size="24.0" />
+                                                               </font>
+                                                            </Label>
+                                                         </children>
+                                                         <padding>
+                                                            <Insets left="7.0" right="5.0" />
+                                                         </padding>
+                                                      </HBox>
+                                                   </graphic>
+                                                   <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                   </cursor>
+                                                </Button>
+                                                <Button mnemonicParsing="false" style="-fx-background-color: #FF3131; -fx-background-radius: 20;" styleClass="shadow" stylesheets="@ProfileStyling.css">
+                                                   <graphic>
+                                                      <HBox alignment="CENTER_LEFT" spacing="3.0">
+                                                         <children>
+                                                            <ImageView fitHeight="25.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                  <Image url="@../Resources/Images/menu-cross.png" />
+                                                               </image>
+                                                            </ImageView>
+                                                            <Label text="Delete" textFill="WHITE">
+                                                               <font>
+                                                                  <Font name="Segoe UI Bold" size="24.0" />
+                                                               </font>
+                                                            </Label>
+                                                         </children>
+                                                         <padding>
+                                                            <Insets bottom="1.0" left="7.0" right="5.0" />
+                                                         </padding>
+                                                      </HBox>
+                                                   </graphic>
+                                                   <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                   </cursor>
+                                                </Button>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" spacing="15.0" styleClass="box" stylesheets="@FriendPageStyling.css">
+                                             <children>
+                                                <Hyperlink fx:id="link110" focusTraversable="false" maxHeight="58.0" prefHeight="58.0" prefWidth="446.0" styleClass="shadow" stylesheets="@ProfileStyling.css" text="Username" />
+                                                <Button mnemonicParsing="false" style="-fx-background-color: #4FC8AB; -fx-background-radius: 20;" styleClass="shadow" stylesheets="@ProfileStyling.css">
+                                                   <graphic>
+                                                      <HBox alignment="CENTER_LEFT" spacing="3.0">
+                                                         <children>
+                                                            <ImageView fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                  <Image url="@../Resources/Images/confirm-icon.png" />
+                                                               </image>
+                                                            </ImageView>
+                                                            <Label text="Confirm" textFill="WHITE">
+                                                               <font>
+                                                                  <Font name="Segoe UI Bold" size="24.0" />
+                                                               </font>
+                                                            </Label>
+                                                         </children>
+                                                         <padding>
+                                                            <Insets left="7.0" right="5.0" />
+                                                         </padding>
+                                                      </HBox>
+                                                   </graphic>
+                                                   <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                   </cursor>
+                                                </Button>
+                                                <Button mnemonicParsing="false" style="-fx-background-color: #FF3131; -fx-background-radius: 20;" styleClass="shadow" stylesheets="@ProfileStyling.css">
+                                                   <graphic>
+                                                      <HBox alignment="CENTER_LEFT" spacing="3.0">
+                                                         <children>
+                                                            <ImageView fitHeight="25.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                  <Image url="@../Resources/Images/menu-cross.png" />
+                                                               </image>
+                                                            </ImageView>
+                                                            <Label text="Delete" textFill="WHITE">
+                                                               <font>
+                                                                  <Font name="Segoe UI Bold" size="24.0" />
+                                                               </font>
+                                                            </Label>
+                                                         </children>
+                                                         <padding>
+                                                            <Insets bottom="1.0" left="7.0" right="5.0" />
+                                                         </padding>
+                                                      </HBox>
+                                                   </graphic>
+                                                   <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                   </cursor>
+                                                </Button>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                       <padding>
+                                          <Insets left="5.0" top="5.0" />
+                                       </padding>
+                                    </VBox>
+                                 </content>
+                              </ScrollPane>
+                           </children>
+                           <padding>
+                              <Insets bottom="5.0" top="5.0" />
+                           </padding>
+                        </StackPane>
+                     </children>
+                  </VBox>
+                  <StackPane fx:id="otherFriendPane" style="-fx-background-color: rgba(196,196,196,0.7); -fx-background-radius: 20 20 20 20;">
+                     <padding>
+                        <Insets bottom="5.0" top="5.0" />
+                     </padding>
+                     <children>
+                        <ScrollPane hbarPolicy="NEVER" maxHeight="450.0" maxWidth="800.0" prefHeight="342.0" prefWidth="800.0" style="-fx-background-color: transparent; -fx-background-radius: 15;">
+                           <content>
+                              <VBox fx:id="otherFriendVBox" alignment="CENTER" minHeight="44.0" prefWidth="800.0" spacing="8.0" style="-fx-alignment: top-center;" styleClass="box" stylesheets="@FriendPageStyling.css">
+                                 <children>
+                                    <Hyperlink fx:id="link22" focusTraversable="false" maxHeight="45.0" prefHeight="45.0" styleClass="shadow" text="Username">
+                                       <stylesheets>
+                                          <URL value="@ProfileStyling.css" />
+                                          <URL value="@FriendPageStyling.css" />
+                                       </stylesheets>
+                                    </Hyperlink>
+                                    <Hyperlink fx:id="link21" focusTraversable="false" maxHeight="45.0" prefHeight="45.0" styleClass="shadow" stylesheets="@ProfileStyling.css" text="Hyperlink" />
+                                    <Hyperlink fx:id="link31" focusTraversable="false" maxHeight="45.0" prefHeight="45.0" styleClass="shadow" stylesheets="@ProfileStyling.css" text="Hyperlink" />
+                                    <Hyperlink fx:id="link41" focusTraversable="false" maxHeight="45.0" prefHeight="45.0" styleClass="shadow" stylesheets="@ProfileStyling.css" text="Hyperlink" />
+                                    <Hyperlink fx:id="link51" focusTraversable="false" maxHeight="45.0" prefHeight="45.0" styleClass="shadow" stylesheets="@ProfileStyling.css" text="Hyperlink" />
+                                    <Hyperlink fx:id="link61" focusTraversable="false" maxHeight="45.0" prefHeight="45.0" styleClass="shadow" stylesheets="@ProfileStyling.css" text="Hyperlink" />
+                                    <Hyperlink fx:id="link71" focusTraversable="false" maxHeight="45.0" prefHeight="45.0" styleClass="shadow" stylesheets="@ProfileStyling.css" text="Hyperlink" />
+                                 </children>
+                              </VBox>
+                           </content>
+                        </ScrollPane>
+                     </children>
+                  </StackPane>
+               </children>
+            </StackPane>
+         </children>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+      </VBox>
+   </children>
+   <padding>
+      <Insets bottom="10.0" left="40.0" right="40.0" top="10.0" />
+   </padding>
+   <stylesheets>
+      <URL value="@QuizPageStyling.css" />
+      <URL value="@FriendPageStyling.css" />
+   </stylesheets>
+</VBox>

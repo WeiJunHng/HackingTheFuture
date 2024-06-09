@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1540.0" spacing="10.0" stylesheets="@AppStyling.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hackingthefuture.LeaderboardPageController">
+   <children>
+      <Label text="LEADERBOARD" textFill="WHITE">
+         <font>
+            <Font name="Stencil" size="50.0" />
+         </font>
+         <padding>
+            <Insets left="3.0" />
+         </padding>
+      </Label>
+      <StackPane prefHeight="600.0">
+         <children>
+            <Pane style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 25; -fx-border-width: 2;" />
+            <TableView fx:id="leaderboardView" prefHeight="600.0" stylesheets="@LeaderboardStyling.css">
+               <columns>
+                  <TableColumn fx:id="rankColumn" editable="false" prefWidth="75.0" sortable="false" text="Rank" />
+                  <TableColumn fx:id="userColumn" editable="false" prefWidth="150.0" sortable="false" text="Username" />
+                  <TableColumn fx:id="pointColumn" editable="false" prefWidth="90.0" sortable="false" text="Points" />
+               </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+               <StackPane.margin>
+                  <Insets bottom="1.5" left="1.5" right="1.5" top="1.5" />
+               </StackPane.margin>
+            </TableView>
+         </children>
+      </StackPane>
+   </children>
+   <padding>
+      <Insets left="90.0" right="90.0" top="25.0" />
+   </padding>
+</VBox>

@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+<StackPane focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1540.0" styleClass="bg" stylesheets="@AppStyling.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hackingthefuture.AppMainController">
+   <children>
+      <VBox fx:id="page" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1540.0" stylesheets="@AppStyling.css">
+         <children>
+            <StackPane prefHeight="80.0">
+               <children>
+                  <Pane style="-fx-background-color: #3b143c; -fx-opacity: 0.7;" />
+                  <HBox alignment="CENTER_LEFT" prefHeight="80.0">
+                     <children>
+                        <Button fx:id="menuBtn" mnemonicParsing="false" style="-fx-background-color: transparent;">
+                           <graphic>
+                              <ImageView fx:id="menuImageView" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Resources/Images/menu.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <HBox.margin>
+                              <Insets right="40.0" />
+                           </HBox.margin>
+                        </Button>
+                        <ImageView fitHeight="80.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Resources/Images/logo.png" />
+                           </image>
+                           <effect>
+                              <DropShadow offsetX="4.0" offsetY="2.0" />
+                           </effect>
+                        </ImageView>
+                        <Pane HBox.hgrow="ALWAYS" />
+                        <HBox spacing="10.0">
+                           <children>
+                              <Button fx:id="topBarHomeBtn" mnemonicParsing="false" prefHeight="118.0" style="-fx-background-color: transparent;">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                                 <graphic>
+                                    <HBox alignment="CENTER" spacing="7.0">
+                                       <children>
+                                          <ImageView fitHeight="24.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../Resources/Images/home-btn-icon.png" />
+                                             </image>
+                                          </ImageView>
+                                          <Label text="Home" textFill="WHITE">
+                                             <font>
+                                                <Font name="Segoe UI Bold" size="30.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                 </graphic>
+                              </Button>
+                              <Button fx:id="topBarFriendBtn" mnemonicParsing="false" prefHeight="118.0" style="-fx-background-color: transparent;">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                                 <graphic>
+                                    <HBox alignment="CENTER" spacing="7.0">
+                                       <children>
+                                          <ImageView fitHeight="36.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../Resources/Images/friend-icon.png" />
+                                             </image>
+                                          </ImageView>
+                                          <Label text="Friend" textFill="WHITE">
+                                             <font>
+                                                <Font name="Segoe UI Bold" size="30.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                 </graphic>
+                              </Button>
+                              <Button fx:id="topBarLogoutBtn" mnemonicParsing="false" prefHeight="118.0" style="-fx-background-color: transparent;">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                                 <graphic>
+                                    <HBox alignment="CENTER" spacing="7.0">
+                                       <children>
+                                          <ImageView fitHeight="28.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../Resources/Images/logout-icon.png" />
+                                             </image>
+                                          </ImageView>
+                                          <Label text="Logout" textFill="WHITE">
+                                             <font>
+                                                <Font name="Segoe UI Bold" size="30.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                 </graphic>
+                              </Button>
+                           </children>
+                        </HBox>
+                     </children>
+                     <padding>
+                        <Insets left="35.0" right="35.0" />
+                     </padding>
+                  </HBox>
+               </children>
+            </StackPane>
+            <HBox fx:id="homePage" alignment="CENTER_LEFT" spacing="100.0" style="-fx-background-color: rgba(0,0,0,0.4);" VBox.vgrow="ALWAYS">
+               <children>
+                  <VBox alignment="CENTER_LEFT">
+                     <children>
+                        <Label text="WELCOME" textFill="WHITE">
+                           <font>
+                              <Font name="Cooper Black" size="67.0" />
+                           </font>
+                        </Label>
+                        <Label prefWidth="800.0" text="Welcome to a world of endless possibilities and exciting adventures! Whether you're here to learn something new, seek inspiration, or simply unwind, this is a place where your imagination can roam free. Let your curiosity guide you as you explore the vast landscape of knowledge and creativity that awaits. Embrace the journey ahead with an open mind and a willingness to embrace the unknown. Welcome, and let the magic begin!" textAlignment="JUSTIFY" textFill="WHITE" wrapText="true">
+                           <font>
+                              <Font name="Comic Sans MS Bold" size="29.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <HBox.margin>
+                        <Insets bottom="30.0" />
+                     </HBox.margin>
+                  </VBox>
+                  <ImageView fitHeight="458.0" fitWidth="580.0" pickOnBounds="true" preserveRatio="true" translateY="-10.0">
+                     <image>
+                        <Image url="@../Resources/Images/home-img.png" />
+                     </image>
+                     <effect>
+                        <DropShadow spread="0.52">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </DropShadow>
+                     </effect>
+                  </ImageView>
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets left="100.0" />
+               </padding>
+            </HBox>
+         </children>
+      </VBox>
+      <AnchorPane fx:id="backBtnPane">
+         <children>
+            <Button fx:id="backBtn" layoutX="23.0" layoutY="114.0" mnemonicParsing="false" style="-fx-background-color: transparent;">
+               <graphic>
+                  <ImageView fitHeight="39.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Resources/Images/left-arrow.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="navBarMover" visible="false">
+         <children>
+            <StackPane layoutY="80.0">
+               <children>
+                  <Pane style="-fx-background-color: black; -fx-opacity: 0.8;" />
+                  <VBox fx:id="navBar" alignment="TOP_CENTER" prefHeight="720.0" prefWidth="350.0" styleClass="navBar" stylesheets="@AppStyling.css">
+                     <children>
+                        <VBox alignment="CENTER">
+                           <children>
+                              <ImageView fx:id="userProfileImage" fitHeight="250.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Resources/Images/user-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="navBarUsernameLabel" text="Username" textFill="WHITE">
+                                 <font>
+                                    <Font name="Bell MT Bold" size="40.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets top="5.0" />
+                                 </VBox.margin></Label>
+                              <Label fx:id="navBarRoleLabel" alignment="TOP_CENTER" style="-fx-background-radius: 30;" text="EDUCATOR" textFill="WHITE">
+                                 <font>
+                                    <Font name="Cooper Black" size="27.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets bottom="4.0" left="17.0" right="17.0" top="4.0" />
+                                 </padding>
+                                 <VBox.margin>
+                                    <Insets bottom="7.0" top="7.0" />
+                                 </VBox.margin></Label>
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                        </VBox>
+                        <Button fx:id="navBarProfileBtn" alignment="TOP_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="350.0" text="Profile" textFill="WHITE">
+                           <font>
+                              <Font name="Segoe UI Bold" size="27.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Resources/Images/user-icon.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                           <padding>
+                              <Insets left="40.0" />
+                           </padding>
+                        </Button>
+                        <Button fx:id="navBarEventsBtn" alignment="TOP_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="350.0" text="Events" textFill="WHITE">
+                           <font>
+                              <Font name="Segoe UI Bold" size="27.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Resources/Images/event.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <padding>
+                              <Insets left="40.0" />
+                           </padding>
+                        </Button>
+                        <Button fx:id="navBarQuizBtn" alignment="TOP_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="350.0" text="Quiz" textFill="WHITE">
+                           <font>
+                              <Font name="Segoe UI Bold" size="27.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Resources/Images/quiz.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <padding>
+                              <Insets left="40.0" />
+                           </padding>
+                        </Button>
+                        <Button fx:id="navBarBookingBtn" alignment="TOP_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="350.0" text="Book Destination" textFill="WHITE">
+                           <font>
+                              <Font name="Segoe UI Bold" size="27.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Resources/Images/booking.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <padding>
+                              <Insets left="40.0" />
+                           </padding>
+                        </Button>
+                        <Button fx:id="navBarDiscussionBtn" alignment="TOP_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="350.0" text="Discussion" textFill="WHITE">
+                           <font>
+                              <Font name="Segoe UI Bold" size="27.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Resources/Images/discussion.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                           <padding>
+                              <Insets left="40.0" />
+                           </padding>
+                        </Button>
+                        <Button fx:id="navBarLeaderboardBtn" alignment="TOP_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="350.0" text="Leaderboard" textFill="WHITE">
+                           <font>
+                              <Font name="Segoe UI Bold" size="27.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Resources/Images/leaderboard.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                           <padding>
+                              <Insets left="40.0" />
+                           </padding>
+                        </Button>
+                     </children>
+                     <padding>
+                        <Insets top="20.0" />
+                     </padding>
+                  </VBox>
+               </children>
+            </StackPane>
+         </children>
+         <StackPane.margin>
+            <Insets />
+         </StackPane.margin>
+      </AnchorPane>
+   </children>
+</StackPane>

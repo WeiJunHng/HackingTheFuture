@@ -1,0 +1,87 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 29 Apr 2024, 3:10:11 pm
+    Author     : Asus
+*/
+
+.bg{
+    -fx-background-image : url("../Images/main_bg.png");
+}
+
+.login{
+    /*-fx-background-image : url("../Images/login_bg.png");*/
+}
+
+.bg TextField{
+    -fx-opacity: 0.8;
+    -fx-background-radius: 30;
+    -fx-border-radius: 30;
+    -fx-effect : dropshadow(three-pass-box, #000000 ,8.0,0.0,1.0,4.0);
+}
+
+.bg PasswordField{
+    -fx-opacity: 0.8;
+    -fx-background-radius: 30;
+    -fx-border-radius: 30;
+    -fx-effect : dropshadow(three-pass-box, #000000 ,8.0,0.0,1.0,4.0);
+}
+
+.bg TextField:focused{
+    -fx-opacity: 1;
+}
+
+.bg PasswordField:focused{
+    -fx-opacity: 1;
+}
+
+.bg Button{
+    -fx-background-radius: 15;
+    -fx-background-color: #dd60d8;
+    -fx-effect : innershadow(three-pass-box, rgba(255,255,255,0.7),8.0,0.0,1.0,4.0);
+}
+
+.bg Button:hover{
+    -fx-effect : innershadow(three-pass-box, rgba(255,255,255,0.7),4.0,0.0,1.0,3.5);
+}
+
+.bg Button:pressed{
+    -fx-effect : innershadow(three-pass-box, rgba(255,255,255,0.7),3.5,0.0,0.5,2);
+}
+
+.login_label{
+    -fx-effect : dropshadow(three-pass-box, #000000 ,10.0,0.0,1.0,4.0);
+}
+
+.login_label_light{
+    -fx-effect : dropshadow(three-pass-box, #000000 ,4.0,0.0,1.0,4.0);
+}
+
+.bg CheckBox{
+    -fx-effect : dropshadow(three-pass-box, #000000 ,10.0,0.0,1.0,4.0);
+}
+
+.bg Hyperlink{
+    -fx-effect : dropshadow(three-pass-box, #000000 ,12.0,0.0,1.0,4.0);
+    -fx-underline:false;
+}
+
+.bg Hyperlink:hover{
+    -fx-underline:true;
+}
+
+.no_effect{
+    -fx-effect : dropshadow(three-pass-box, #000000 ,0,0,0,0);
+}
+
+.register{
+    /*-fx-background-image : url("../Images/register_bg.png");*/
+}
+
+#Empty{
+    -fx-border-color : #ff0202;
+    -fx-border-width : 3px;
+    -fx-effect : dropshadow(three-pass-box,#ff5454,5,0,0,4);
+}

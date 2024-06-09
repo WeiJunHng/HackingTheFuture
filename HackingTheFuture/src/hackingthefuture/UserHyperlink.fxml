@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Hyperlink?>
+
+
+<Hyperlink fx:id="link" maxHeight="45.0" prefHeight="45.0" prefWidth="450.0" styleClass="UserHyperlink" stylesheets="@ProfileStyling.css" text="Hyperlink" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hackingthefuture.UserHyperlinkController" />

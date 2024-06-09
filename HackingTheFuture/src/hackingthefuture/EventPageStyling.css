@@ -1,0 +1,151 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 10 May 2024, 1:44:09 pm
+    Author     : Asus
+*/
+
+.cardBg{
+    -fx-background-radius: 20;
+    -fx-background-color: linear-gradient(to top, rgba(0,0,0,0.65), rgba(168,50,149,0.55));
+    -fx-border-radius: 20;
+    -fx-border-width: 0.7;
+    -fx-border-color: #FFFFFF;
+}
+
+.cardBg TextField{
+    -fx-background-radius: 15;
+    -fx-background-color:  rgba(196,196,196,0.45);
+    -fx-pref-width: 550;
+    -fx-pref-height: 45;
+    -fx-padding: 0 17 0 17;
+
+    -fx-font-family: "Times New Roman";
+    -fx-font-weight: bold;
+    -fx-font-size: 30;
+    -fx-text-fill: #FFFFFF;
+}
+
+.eventCard{
+    -fx-background-color: linear-gradient(to bottom, rgba(82,17,100,0.7), rgba(0,0,0,0.8));
+    -fx-background-radius: 20;
+    -fx-border-color: white;
+    -fx-border-width: 1;
+    -fx-border-radius: 17;
+}
+
+.spinner{
+    -fx-background-radius: 20;
+    -fx-control-inner-background: transparent;
+    -fx-background-color: transparent;
+    -fx-pref-width: 90;
+    -fx-pref-height: 30;
+}
+
+.spinner .text-field{
+    -fx-background-color:  transparent;
+    -fx-font-family: "Times New Roman";
+    -fx-font-weight: bold;
+    -fx-font-size: 25;
+    -fx-text-fill: #FFFFFF;
+}
+
+.spinner .increment-arrow-button {
+    -fx-background-radius: 0 10 0 0;
+    -fx-background-color: rgba(196,196,196,1);
+}
+
+.spinner .decrement-arrow-button {
+    -fx-background-radius: 0 0 10 0;
+    -fx-background-color: rgba(196,196,196,1);
+}
+
+.spinner .increment-arrow-button:hover, .spinner .decrement-arrow-button:hover {
+    -fx-cursor:hand;
+    -fx-background-color: rgba(170,170,170,1);
+}
+    /*
+    .spinner .increment-arrow, .spinner .decrement-arrow {
+        -fx-background-color: rgba(196,196,196,1);
+    }*/
+
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+
+.text-area{
+    -fx-background-radius: 20;
+    -fx-control-inner-background: transparent;
+    -fx-background-color:  rgba(196,196,196,0.45);
+    -fx-pref-width: 550;
+    -fx-pref-height: 120;
+
+    -fx-font-family: "Times New Roman";
+    -fx-font-weight: bold;
+    -fx-font-size: 30;
+    -fx-text-fill: #FFFFFF;
+}
+
+.text-area .scroll-pane .scroll-bar:vertical,
+.text-area .scroll-pane .scroll-bar:vertical .track,
+.text-area .scroll-pane .scroll-bar:vertical .track-background{
+    -fx-background-color: transparent;
+    -fx-padding: 0 8 0 0;
+}
+
+.text-area .scroll-pane .scroll-bar:vertical {
+    -fx-background-insets: 0;
+}
+
+.text-area .scroll-pane .scroll-bar:vertical .thumb {
+    -fx-background-color: rgba(196,196,196,0.75); 
+    -fx-background-radius: 10;
+    -fx-padding: 5;
+}
+
+.text-area .scroll-pane .scroll-bar .increment-button,
+.text-area .scroll-pane .scroll-bar .decrement-button {
+    -fx-opacity: 0;
+    -fx-padding: 0;
+}
+
+.date-picker{
+    -fx-background-radius: 15;
+    -fx-background-color: transparent;
+
+    -fx-pref-width: 550;
+    -fx-pref-height: 47;
+
+    -fx-font-family: "Calibri";
+    -fx-font-weight: bold;
+    -fx-font-size: 20;
+    -fx-text-fill: #FFFFFF;
+}
+
+.date-picker .text-field {
+    -fx-background-radius: 15;
+    -fx-background-color:  transparent;
+    -fx-padding: 0 17 0 17;
+
+    -fx-font-family: "Times New Roman";
+    -fx-font-weight: bold;
+    -fx-font-size: 30;
+    -fx-text-fill: #FFFFFF;
+}
+
+.date-picker .arrow-button {
+    -fx-background-color: white;
+    -fx-background-radius: 5 10 10  5;
+    -fx-pref-height: 45;
+}
+
+.date-picker .arrow-button:hover {
+    -fx-background-color: #701b68;
+    -fx-cursor: hand;
+}
+
+
+
+

@@ -1,0 +1,100 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 29 May 2024, 12:46:31 pm
+    Author     : Asus
+*/
+
+.table-view {
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header-background .filler {
+    -fx-background-color: transparent;
+}
+
+.table-view .corner {
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header-background{
+    -fx-background-color: rgba(0,0,0,0.4);
+    -fx-text-background-color: #FFFFFF;
+    -fx-background-radius: 0 0 0 0;
+    -fx-background-insets: 0 0 0 0;
+}
+
+/* Top row */
+.table-view .column-header {
+    -fx-background-color: transparent;
+    -fx-font-family: "Cooper Black";
+    -fx-font-weight : bold;
+    -fx-font-size: 40;
+}
+
+/* Cell */
+.table-view .table-cell{
+    -fx-border-color: transparent;
+    -fx-alignment: center;
+    -fx-text-background-color: #FFFFFF;
+    -fx-font-family: "Britannic Bold";
+    -fx-font-weight : bold;
+    -fx-font-size: 36;
+    -fx-effect : dropshadow(three-pass-box, #363636 ,7.0,0.0,1.0,4.0);
+}
+
+.table-row-cell:hover {
+    -fx-background-color: #93f9b911;
+    -fx-background-color: #3f0f55;
+}
+
+.table-row-cell:odd{
+    -fx-background-color: linear-gradient(to right, #4962a3, #9bbdff);
+    -fx-background-color: rgba(229,138,214,0.7);
+    /*-fx-text-background-color: #192f55;*/
+}
+
+.table-row-cell:even{
+    -fx-background-color: linear-gradient(to left, #9349a3, #e87bff);
+    -fx-background-color: rgba(166,60,176,0.7);
+    /*-fx-text-background-color: #3f0f55;*/
+}
+
+.table-view .virtual-flow{
+}
+
+/* Scrollbar */
+.table-view .virtual-flow .scroll-bar:vertical,
+.table-view .virtual-flow .scroll-bar:vertical .track,
+.table-view .virtual-flow .scroll-bar:vertical .track-background {
+    -fx-background-color: transparent;
+}
+
+.table-view .virtual-flow .scroll-bar .increment-button,
+.table-view .virtual-flow .scroll-bar .decrement-button {
+    -fx-opacity: 0;
+    -fx-padding: 2;
+}
+
+.table-view .virtual-flow .scroll-bar:vertical .thumb{
+    -fx-background-color:  linear-gradient(to bottom, #1dbbdd44, #93f9b944);
+}
+
+#UserHyperlink {
+    -fx-background-color: transparent;
+    -fx-text-fill:#FFFFFF;
+    -fx-underline:false;
+    -fx-focus-traversable:false;
+    
+    -fx-alignment: top-center;
+    -fx-font-family: "Britannic Bold";
+    -fx-font-weight : bold;
+    -fx-font-size: 35.5;
+}
+
+#UserHyperlink:hover {
+    -fx-font-size:41;
+    -fx-underline:true;
+}

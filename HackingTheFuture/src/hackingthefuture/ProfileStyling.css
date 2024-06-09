@@ -1,0 +1,80 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 24 Apr 2024, 5:38:34 pm
+    Author     : Asus
+*/
+
+.shadow{
+    -fx-effect : dropshadow(three-pass-box, #363636 ,7.0,0.0,1.0,4.0);
+}
+
+.editBtn{
+    -fx-background-radius: 15;
+    -fx-background-color: #dd60d8;
+    -fx-effect : innershadow(three-pass-box, rgba(255,255,255,0.7),8.0,0.0,1.0,4.0);
+}
+
+.editBtn:hover{
+    -fx-effect : innershadow(three-pass-box, rgba(255,255,255,0.7),4.0,0.0,1.0,3.5);
+    -fx-cursor: hand;
+}
+
+.editBtn:pressed{
+    -fx-effect : innershadow(three-pass-box, rgba(255,255,255,0.7),3.5,0.0,0.5,2);
+}
+
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+
+.UserHyperlink {
+    -fx-background-color: transparent;
+    -fx-font-family:"Segoe UI";
+    -fx-font-size:28;
+    -fx-font-weight : bold;
+    -fx-text-fill:#FFFFFF;
+    -fx-underline:false;
+    -fx-focus-traversable:false;
+}
+
+.UserHyperlink:hover {
+    /*-fx-font-family:"Segoe UI Black";*/
+    -fx-font-size:30;
+    -fx-underline:true;
+}
+
+#navBarBtnSelected{
+    -fx-background-color: #A87E50;
+    -fx-text-fill : #FFFFFF;
+}
+
+#StudentBg{
+    -fx-background-color: linear-gradient(to bottom, rgba(212,80,152,0.65), rgba(0,0,0,0.7));
+}
+
+#ParentBg{
+    -fx-background-color: linear-gradient(to bottom, rgba(71,202,231,0.65), rgba(0,0,0,0.7));
+}
+
+#EducatorBg{
+    -fx-background-color: linear-gradient(to bottom, rgba(78,238,123,0.65), rgba(0,0,0,0.7));
+}
+
+#StudentLabel{
+    -fx-background-color: #d73482;
+    -fx-effect : dropshadow(three-pass-box, #000000 ,6,0,1,2);
+}
+
+#ParentLabel{
+    -fx-background-color: #5998e2;
+    -fx-effect : dropshadow(three-pass-box, #000000 ,6,0,1,2);
+}
+
+#EducatorLabel{
+    -fx-background-color: #17d082;
+    -fx-effect : dropshadow(three-pass-box, #000000 ,6,0,1,2);
+}
+
