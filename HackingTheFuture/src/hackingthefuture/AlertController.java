@@ -60,6 +60,7 @@ public class AlertController implements Initializable {
         });
     }
 
+    // Set type of alert to "Success" (Green background)
     public void setSuccess(String message) {
         errorImg.setVisible(false);
         successImg.setVisible(false);
@@ -71,6 +72,7 @@ public class AlertController implements Initializable {
         messageLabel.setText(message);
     }
 
+    // Set type of alert to "Error" (Red background)
     public void setError(String message) {
         errorImg.setVisible(false);
         successImg.setVisible(false);
@@ -82,6 +84,7 @@ public class AlertController implements Initializable {
         messageLabel.setText(message);
     }
 
+    // Pop up a window of success alert
     public static void showSuccessAlert(String message, Stage ownerStage) {
         try {
             AlertController temp = new AlertController();
@@ -108,6 +111,7 @@ public class AlertController implements Initializable {
         }
     }
     
+    // Pop up a window of error alert
     public static void showErrorAlert(String message, Stage ownerStage) {
         try {
             AlertController temp = new AlertController();
@@ -134,6 +138,7 @@ public class AlertController implements Initializable {
         }
     }
 
+    // Get the FXMLLoader of alert window with a non-static method
     private FXMLLoader getAlert() {
         return new FXMLLoader(getClass().getResource("Alert.fxml"));
     }

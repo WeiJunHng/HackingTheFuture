@@ -46,6 +46,8 @@ public class DestinationCardController implements Initializable {
         // TODO
     }
 
+    // Get destination, its index in the priority queue and current login Parent
+    // Initialise details of the destination
     public void setup(Destination destination, int index, Parent currentParent) {
         this.currentParent = currentParent;
         this.index = index;
@@ -53,8 +55,8 @@ public class DestinationCardController implements Initializable {
         destinationImage.setImage(new Image(getClass().getResourceAsStream("/Resources/Images/" + destination.getName() + ".png")));
         destinationNameLabel.setText(destination.getName());
         destinationDistanceLabel.setText(destination.distanceOf(currentParent) + " km");
-        
-        destinationBookBtn.setOnAction(eh->{
+
+        destinationBookBtn.setOnAction(eh -> {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("BookingDestinationPage.fxml"));
                 Node root = loader.load();

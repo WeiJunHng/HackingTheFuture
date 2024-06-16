@@ -62,10 +62,12 @@ public class BookingDetailsPageController implements Initializable {
         });
     }
 
+    // Initialise the page, get booking and the current login User
     public void setup(Booking booking, User currentUser) {
         this.currentUser = currentUser;
         this.booking = booking;
 
+        // Switch to the profile of parent who made the booking
         bookingParentBtn.setOnAction(event -> {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("Profile.fxml"));
@@ -83,6 +85,9 @@ public class BookingDetailsPageController implements Initializable {
         refresh();
     }
 
+    // Refresh the page
+    // Setup details about the booking
+    // Destination, distance between destination and parent made the booking, parent, slot, children involved
     public void refresh() {
         bookingDestinationLabel.setText(booking.getDestination().getName());
         bookingDistanceLabel.setText(booking.getDestination().distanceOf(booking.getParent()) + " km");
@@ -94,6 +99,7 @@ public class BookingDetailsPageController implements Initializable {
                 Hyperlink link = loader.load();
                 UserHyperlinkController userHyperlinkController = loader.getController();
                 userHyperlinkController.setUser(child, currentUser);
+                // Switch to profile of the child
                 link.setOnAction(eh -> {
                     try {
                         FXMLLoader loader2 = new FXMLLoader(getClass().getResource("Profile.fxml"));
@@ -114,6 +120,7 @@ public class BookingDetailsPageController implements Initializable {
         }
     }
 
+    // Close the pop up window
     private void close() {
         stage.close();
     }

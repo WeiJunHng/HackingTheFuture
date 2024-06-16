@@ -8,6 +8,10 @@ package hackingthefuture;
  *
  * @author Asus
  */
+
+// Abstract class created so that controller of different pages share a common parent class
+// Important for back navigation
 public abstract class Controller {
+    // Refresh method needed when switched back to a page
     public abstract void refresh();
 }

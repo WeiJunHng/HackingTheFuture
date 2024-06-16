@@ -13,14 +13,17 @@ import java.util.List;
 public class QuizHandler {
     private static final DBHandler dBHandler = new DBHandler();
 
+    // Save quiz into database
     public static void createQuiz(Quiz quiz, Educator creator) {
         dBHandler.saveQuiz(quiz, creator);
     }
     
+    // Get quiz from database based on ID given
     public static Quiz getQuiz(String ID){
         return dBHandler.getQuizByID(ID);
     }
     
+    // Get list of all quiz
     public static List<Quiz> getQuizList(){
         return dBHandler.getQuizzes();
     }

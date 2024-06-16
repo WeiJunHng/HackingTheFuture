@@ -57,25 +57,35 @@ public class CreateDiscussionPageController implements Initializable {
         });
     }
 
+    // Initialise the pop up window and get the current login User
     public void setup(User currentUser, DiscussionPageController controller) {
         this.currentUser = currentUser;
 
+        // Post the discussion
         discussionPostBtn.setOnAction(event -> {
             String title = discusssionTitleTF.getText();
             String content = discussionContentTextArea.getText();
+
+            // Stop when there is any empty field
             if (title.isBlank() || content.isBlank()) {
                 discusssionTitleTF.setId(title.isBlank() ? "Empty" : "");
                 discussionContentTextArea.setId(content.isBlank() ? "Empty" : "");
+                AlertController.showErrorAlert("All field must be filled in!", (Stage) closeBtn.getScene().getWindow());
                 return;
             }
+
+            // Save the discussion
             Discussion discussion = new Discussion(title, currentUser.getID(), content, LocalDateTime.now());
             DiscussionHandler.postDiscussion(discussion, currentUser);
-            controller.refresh();
+
+            // Refresh the discussion page, close pop up window and display alert of "Success"
+            AppMainController.refreshPage();
             close();
             AppMainController.showSuccessAlert("Discussion Posted");
         });
     }
 
+    // Close the pop up window
     private void close() {
         ((Stage) closeBtn.getScene().getWindow()).close();
     }

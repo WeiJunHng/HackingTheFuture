@@ -95,13 +95,6 @@ public class AppMainController implements Initializable {
         previousControllerStack = new Stack<>();
         staticBackBtn = backBtn;
         currentPageBox = page;
-//        try {
-//            FXMLLoader loader = new FXMLLoader(getClass().getResource("Alert.fxml"));
-//            alertPage = loader.load();
-//            alertController = loader.getController();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
 
         navBarMover.setClip(new Rectangle(0, 80, 350, 720));
         navBarMover.setTranslateX(-350);
@@ -111,6 +104,8 @@ public class AppMainController implements Initializable {
 
         backBtnPane.setClip(new Rectangle(23, 114, 68, 43.2));
         backBtn.setVisible(false);
+        
+        // Set action for back navigation button
         backBtn.setOnAction(eh -> {
             if (previousPageStack.isEmpty()) {
                 return;
@@ -129,6 +124,7 @@ public class AppMainController implements Initializable {
             backBtn.setVisible(!previousPageStack.isEmpty());
         });
         
+        // When "Home" button at top is clicked, clear all pages navigated and switch to "Home" page
         topBarHomeBtn.setOnAction(event->{
             if(!getCurrentPage().equals(homePage)){
                 changePage(homePage, null);
@@ -141,9 +137,12 @@ public class AppMainController implements Initializable {
         menuBtn.setOnAction(event -> moveNavBar());
     }
 
+    // Get the current login user
+    // Initialise the page based on role of the user
     public void getUser(User user) {
         currentUser = user;
 
+        // Initialise information of user at the navigation bar
         userProfileImage.setImage(new Image("/Resources/Images/"+user.getRole()+" Profile.png"));
         navBarUsernameLabel.setText(currentUser.getUsername());
         navBarRoleLabel.setText(currentUser.getRole().toUpperCase());
@@ -155,12 +154,16 @@ public class AppMainController implements Initializable {
             }
         }
 
+        // Parent cannot access "Quiz"
+        // Student and Educator (Other than Parent) cannot access "Booking Destination"
         if (currentUser instanceof hackingthefuture.Parent) {
             navBar.getChildren().remove(navBarQuizBtn);
         } else {
             navBar.getChildren().remove(navBarBookingBtn);
         }
 
+        // If the user is student, set action for friend button at top of the page (Show pop up window of "Friends")
+        // Else, remove the friend button at top of the page
         if (currentUser instanceof Student student) {
             topBarFriendBtn.setOnAction(event -> {
                 try {
@@ -191,6 +194,7 @@ public class AppMainController implements Initializable {
             ((HBox) topBarFriendBtn.getParent()).getChildren().remove(topBarFriendBtn);
         }
 
+        // Set action for logout button
         topBarLogoutBtn.setOnAction(event -> {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("LoginPage.fxml"));
@@ -206,7 +210,9 @@ public class AppMainController implements Initializable {
 
     }
 
+    // Method to show / hide the navigation bar
     private void moveNavBar() {
+        // Prevent error of moving the bar when the button is being clicked when the animation is playing
         if (!movable) {
             return;
         }
@@ -214,6 +220,7 @@ public class AppMainController implements Initializable {
         movable = false;
         menuBtn.setDisable(true);
 
+        // Change image of the menu button
         Image img;
         if (navBarMover.getTranslateX() == 0) {
             img = new Image("/Resources/Images/menu.png");
@@ -221,6 +228,7 @@ public class AppMainController implements Initializable {
             img = new Image("/Resources/Images/menu-cross.png");
         }
 
+        // Animation of showing/hiding the navigation bar and image of the menu button
         Timeline switchAnimation = new Timeline(
                 new KeyFrame(Duration.seconds(0.3),
                         new KeyValue(menuImageView.rotateProperty(), 180 - menuImageView.getRotate()),
@@ -228,18 +236,21 @@ public class AppMainController implements Initializable {
                 ),
                 new KeyFrame(Duration.seconds(0.5),
                         new KeyValue(navBarMover.translateXProperty(), -350 - navBarMover.getTranslateX())
-                //                        new KeyValue(pageDescLabel.translateXProperty(), 170 - pageDescLabel.getTranslateX())
                 )
         );
 
+        // Enable menu button when the animation is finished
         switchAnimation.setOnFinished(e -> {
             menuBtn.setDisable(false);
             movable = true;
         });
 
+        // Play the animation
         switchAnimation.play();
     }
 
+    // Method to change the selected button in navigation bar
+    // Initialise action when each button is clicked
     private void changeSelectedBtn(ActionEvent event) {
         Button btnClicked = (Button) event.getSource();
         if (!btnClicked.equals(currentBarBtn)) {
@@ -261,7 +272,9 @@ public class AppMainController implements Initializable {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        } else if (btnClicked.equals(navBarEventsBtn)) {
+        } 
+        // Switch to "Events" page
+        else if (btnClicked.equals(navBarEventsBtn)) {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("EventPage.fxml"));
                 Node root = loader.load();
@@ -271,7 +284,9 @@ public class AppMainController implements Initializable {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        } else if (btnClicked.equals(navBarQuizBtn)) {
+        } 
+        // Switch to "Quiz" page
+        else if (btnClicked.equals(navBarQuizBtn)) {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("QuizPage.fxml"));
                 Node root = loader.load();
@@ -281,7 +296,9 @@ public class AppMainController implements Initializable {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        } else if (btnClicked.equals(navBarDiscussionBtn)) {
+        } 
+        // Switch to discussion page
+        else if (btnClicked.equals(navBarDiscussionBtn)) {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("DiscussionPage.fxml"));
                 Node root = loader.load();
@@ -291,7 +308,9 @@ public class AppMainController implements Initializable {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        } else if (btnClicked.equals(navBarBookingBtn)) {
+        } 
+        // Switch to "Book Destination" page
+        else if (btnClicked.equals(navBarBookingBtn)) {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("DestinationListPage.fxml"));
                 Node root = loader.load();
@@ -301,7 +320,9 @@ public class AppMainController implements Initializable {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        } else if (btnClicked.equals(navBarLeaderboardBtn)) {
+        } 
+        // Switch to "Leaderboard" page
+        else if (btnClicked.equals(navBarLeaderboardBtn)) {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("LeaderboardPage.fxml"));
                 Node root = loader.load();
@@ -314,17 +335,27 @@ public class AppMainController implements Initializable {
         }
     }
 
+    // Using static method to ease access
+    // Method to change the current page
     public static void changePage(Node node, Controller controller) {
-        previousPageStack.add(getCurrentPage());
-        previousControllerStack.add(currentController);
+        // Push current page and its controller into stacks for back navigation
+        previousPageStack.push(getCurrentPage());
+        previousControllerStack.push(currentController);
+        
+        // Remove current page
         if (currentPageBox.getChildren().size() > 1) {
             currentPageBox.getChildren().removeLast();
         }
+        
+        // Change to the specific page
         currentPageBox.getChildren().add(node);
         currentController = controller;
+        
+        // Set visibility of back navigation button
         staticBackBtn.setVisible(!previousPageStack.isEmpty());
     }
 
+    // Get the current page
     public static Node getCurrentPage() {
         if (currentPageBox.getChildren().size() == 1) {
             return null;
@@ -332,32 +363,19 @@ public class AppMainController implements Initializable {
         return currentPageBox.getChildren().get(1);
     }
 
+    // Show pop up window of "Success" alert
     public static void showSuccessAlert(String message) {
         AlertController.showSuccessAlert(message, (Stage) currentPageBox.getScene().getWindow());
     }
 
+    // Show pop up window of "Error" alert
     public static void showErrorAlert(String message) {
         AlertController.showErrorAlert(message, (Stage) currentPageBox.getScene().getWindow());
     }
     
+    // Refresh the current page displaying
     public static void refreshPage(){
         currentController.refresh();
     }
-
-//    private static void showAlert() {
-//        Stage stage = new Stage();
-//        Scene scene = new Scene((Parent) alertPage, Color.TRANSPARENT);
-//
-//        stage.setScene(scene);
-//        stage.setResizable(false);
-//        stage.initStyle(StageStyle.TRANSPARENT);
-//        stage.initModality(Modality.WINDOW_MODAL);
-//        stage.initOwner((Stage) currentPageBox.getScene().getWindow());
-//
-//        stage.setX(420);
-//        stage.setY(200);
-//
-//        stage.show();
-//    }
 
 }

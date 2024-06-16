@@ -95,6 +95,7 @@ public class ProfileController extends Controller implements Initializable {
         // TODO
     }
 
+    // Get owner of the profile and current login User
     public void setupProfile(User user, User currentUser) {
         if (user.getID().equals(currentUser.getID())) {
             this.user = currentUser;
@@ -106,6 +107,7 @@ public class ProfileController extends Controller implements Initializable {
         refresh();
     }
 
+    // Refresh the profile
     public void refresh() {
         profileStudentRightBox.setVisible(false);
         profileParentRightBox.setVisible(false);
@@ -124,8 +126,9 @@ public class ProfileController extends Controller implements Initializable {
         profileEmailLabel.setText(user.getEmail());
         profileLocationLabel.setText(user.getLocation().replace(",", " , ").replaceAll("\\(|\\)", ""));
 
-//        profileEditBtn.setVisible(false);
+        // If User viewing own profile
         if (user.getID().equals(currentUser.getID())) {
+            // Show "Edit" page
             profileEditBtn.setOnAction(event->{
                 try {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("EditProfilePage.fxml"));
@@ -152,18 +155,25 @@ public class ProfileController extends Controller implements Initializable {
                 }
             });
         }
+        // If User viewing own profile, show "Edit Profile" button, else hide it
         profileEditBtn.setVisible(user.getID().equals(currentUser.getID()));
 
         profileAddFriendBtn.setVisible(false);
         if (user instanceof Student profileOwner && currentUser instanceof Student currentStudent) {
+            // If other viewing a Student's profile, 
+            // not Student viewing own profile
+            // and owner is not friend of current login Student, show "Add Freind" button, else hide it
             profileAddFriendBtn.setVisible(!profileOwner.isFriend(currentStudent) && !user.getID().equals(currentUser.getID()));
 
             if (profileOwner.isFriend(currentStudent)) {
 
-            } else if (currentStudent.isFriendRequestSent(profileOwner)) {
+            } 
+            // If friend request sent to profile owner, disable "Add Friend" button and change its text
+            else if (currentStudent.isFriendRequestSent(profileOwner)) {
                 profileAddFriendBtn.setText("Request Sent");
                 profileAddFriendBtn.setDisable(true);
             } else {
+                // Send friend request
                 profileAddFriendBtn.setOnAction(event -> {
                     AppMainController.showSuccessAlert(currentStudent.sendFriendRequest(profileOwner));
                     refresh();
@@ -175,6 +185,8 @@ public class ProfileController extends Controller implements Initializable {
         if (user instanceof Student student) {
             studentFriendBox.setVisible(true);
             studentFriendCountLabel.setText(student.getFriendList().size() + "");
+            
+            // Show "Friends" page
             studentViewFriendBtn.setOnAction(event -> {
                 try {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("FriendPage.fxml"));
@@ -201,6 +213,7 @@ public class ProfileController extends Controller implements Initializable {
                 }
             });
 
+            // List of parents
             kinRoleLabel.setText("Parent");
             for (String childrenID : student.getParentList()) {
                 try {
@@ -214,6 +227,7 @@ public class ProfileController extends Controller implements Initializable {
                 }
             }
 
+            // List of registered events
             List<Event> registeredEventList = student.getRegisteredEventObjectList();
             registeredEventList.sort((e1, e2) -> e1.getDate().compareTo(e2.getDate()));
             for (Event event : registeredEventList) {
@@ -251,6 +265,7 @@ public class ProfileController extends Controller implements Initializable {
                 }
             }
 
+            // List of past bookings
             List<Booking> pastBookingList = student.getRegisteredBookingList();
             pastBookingList.sort((e1, e2) -> e1.getSlot().compareTo(e2.getSlot()));
             for (Booking booking : pastBookingList) {
@@ -289,10 +304,13 @@ public class ProfileController extends Controller implements Initializable {
             }
 
             profileStudentRightBox.setVisible(true);
+            // Show points
             profileStudentPointLabel.setText(student.getPoint() + "");
 
-            // For  parent
-        } else if (user instanceof hackingthefuture.Parent parent) {
+        } 
+        // For  parent
+        else if (user instanceof hackingthefuture.Parent parent) {
+            // List of children
             kinRoleLabel.setText("Children");
             for (String childrenID : parent.getChildrenList()) {
                 try {
@@ -306,6 +324,7 @@ public class ProfileController extends Controller implements Initializable {
                 }
             }
 
+            // List of past bookings
             List<Booking> pastBookingList = parent.getPastBookingList();
             pastBookingList.sort((e1, e2) -> e1.getSlot().compareTo(e2.getSlot()));
             for (Booking booking : pastBookingList) {
@@ -345,16 +364,19 @@ public class ProfileController extends Controller implements Initializable {
 
             profileParentRightBox.setVisible(true);
 
-            // For educator
-        } else if (user instanceof Educator educator) {
+        } 
+        // For educator
+        else if (user instanceof Educator educator) {
             kinBox.setVisible(false);
 
             profileEducatorRightBox.setVisible(true);
+            // Hide "Create" button for event and quiz if not Educator viewing own profile
             if (!user.getID().equals(currentUser.getID())) {
                 profileEducatorCreateEventBtn.setVisible(false);
                 profileEducatorCreateQuizBtn.setVisible(false);
             }
 
+            // Show "Create Event" page
             profileEducatorCreateEventBtn.setOnAction(event -> {
                 try {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("CreateEventPage.fxml"));
@@ -380,6 +402,7 @@ public class ProfileController extends Controller implements Initializable {
                 }
             });
 
+            // Show "Create Quiz" page
             profileEducatorCreateQuizBtn.setOnAction(event -> {
                 try {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("CreateQuizPage.fxml"));
@@ -405,6 +428,7 @@ public class ProfileController extends Controller implements Initializable {
                 }
             });
 
+            // Show number of event created and quiz created
             profileEducatorEventCreatedLabel.setText(educator.getEventCreatedList().size() + "");
             profileEducatorQuizCreatedLabel.setText(educator.getQuizCreatedList().size() + "");
         }

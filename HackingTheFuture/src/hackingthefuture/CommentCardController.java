@@ -57,10 +57,12 @@ public class CommentCardController implements Initializable {
         // TODO
     }    
     
+    // Initialise the comment(GUI), get the comment and the current login User
     public void setup(Comment comment, User currentUser) {
         this.comment = comment;
         this.currentUser = currentUser;
         
+        // Switch to profile of user who posted the comment
         commentAuthorBtn.setOnAction(event -> {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("Profile.fxml"));
@@ -74,6 +76,7 @@ public class CommentCardController implements Initializable {
             }
         });
 
+        // Like / DIslike the comment when the "Love" button is clicked
         commentLikeBtn.setOnAction(event -> {
             if (this.comment.isUserLiked(this.currentUser)) {
                 this.comment.disliked(this.currentUser);
@@ -86,6 +89,8 @@ public class CommentCardController implements Initializable {
         refresh();
     }
 
+    // Refresh the comment(GUI)
+    // Details of the comment
     public void refresh() {
         commentDateLabel.setText(comment.getFormattedDate());
         commentContentLabel.setText(comment.getContent());
@@ -96,6 +101,8 @@ public class CommentCardController implements Initializable {
         } else if (!((HBox) commentLikeBtn.getParent()).getChildren().contains(commentLikeCountLabel)) {
             ((HBox) commentLikeBtn.getParent()).getChildren().add(commentLikeCountLabel);
         }
+        
+        // Determine love should be red(liked) or black(not liked) colour
         redLove.setVisible(comment.isUserLiked(currentUser));
         blackLove.setVisible(!comment.isUserLiked(currentUser));
         commentLikeCountLabel.setText(String.valueOf(comment.getLikeCount()));

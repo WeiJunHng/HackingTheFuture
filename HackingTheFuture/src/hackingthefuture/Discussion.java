@@ -36,6 +36,7 @@ public class Discussion {
         this.datePublished = datePublished;
     }
     
+    // Getter for the object
     public String getID(){
         return ID;
     }
@@ -60,6 +61,7 @@ public class Discussion {
         return userLiked;
     }
 
+    // Get list of user IDs who liked the discussion
     public List<String> getUserLikedList() {
         if (userLiked.isEmpty()) {
             return List.of();
@@ -67,26 +69,32 @@ public class Discussion {
         return Arrays.asList(userLiked.split(","));
     }
 
+    // Get number of users liked the discussion
     public int getLikeCount() {
         return getUserLikedList().size();
     }
 
+    // Get does the user liked the discussion
     public boolean isUserLiked(User user) {
         return Arrays.asList(userLiked.split(",")).contains(user.getID());
     }
 
+    // User like the discussion
     public void liked(User user) {
         DiscussionHandler.liked(this, user);
     }
 
+    // User dislike the discusison
     public void disliked(User user) {
         DiscussionHandler.disliked(this, user);
     }
     
+    // Update users who liked the discussion
     public void updateUserLiked(String userLikedNew) {
         this.userLiked = userLikedNew;
     }
     
+    // Get formatted string of published date of the discussion
     public String getFormattedDate(){
         return datePublished.format(DateTimeFormatter.ofPattern("d-M-yyyy  hh:mm a")).toUpperCase();
     }

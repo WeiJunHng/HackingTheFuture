@@ -42,30 +42,37 @@ public class Comment {
         this.datePublished = datePublished;
     }
     
+    // Get ID of the comment
     public String getID(){
         return ID;
     }
     
+    // Get ID of discussion which the comment belongs to
     public String getDiscussionID(){
         return discussionID;
     }
 
+    // Get content of the comment
     public String getContent() {
         return content;
     }
 
+    // Get date and time the comment posted
     public LocalDateTime getDatePublished() {
         return datePublished;
     }
 
+    // Get the user who posted the comment
     public User getAuthor() {
         return author;
     }
 
+    // Get users who liked the comment
     public String getUserLiked() {
         return userLiked;
     }
 
+    // Get list of users who like the comment
     public List<String> getUserLikedList() {
         if (userLiked.isEmpty()) {
             return List.of();
@@ -73,26 +80,32 @@ public class Comment {
         return Arrays.asList(userLiked.split(","));
     }
 
+    // Get number of users liked the comment
     public int getLikeCount() {
         return getUserLikedList().size();
     }
 
+    // Determine if the comment is liked by the specific user
     public boolean isUserLiked(User user) {
         return Arrays.asList(userLiked.split(",")).contains(user.getID());
     }
 
+    // Save user when he/she like the comment
     public void liked(User user) {
         DiscussionHandler.commentLiked(this, user);
     }
 
+    // Remove user when he/she dislike the comment
     public void disliked(User user) {
         DiscussionHandler.commentDisliked(this, user);
     }
     
+    // Update users liked the comment
     public void updateUserLiked(String userLikedNew) {
         this.userLiked = userLikedNew;
     }
     
+    // Get formatted string of date and time where the comment posted
     public String getFormattedDate(){
         return datePublished.format(DateTimeFormatter.ofPattern("d-M-yyyy  hh:mm a")).toUpperCase();
     }

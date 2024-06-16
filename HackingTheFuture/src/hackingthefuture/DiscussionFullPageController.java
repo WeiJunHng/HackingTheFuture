@@ -75,10 +75,12 @@ public class DiscussionFullPageController extends Controller implements Initiali
         countLabelParent = (HBox)discussionLikeCountLabel.getParent();
     }
 
+    // Get the discussion and current login User
     public void setup(Discussion discussion, User currentUser) {
         this.discussion = discussion;
         this.currentUser = currentUser;
 
+        // View author's profile
         discussionAuthorBtn.setOnAction(event -> {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("Profile.fxml"));
@@ -92,6 +94,7 @@ public class DiscussionFullPageController extends Controller implements Initiali
             }
         });
 
+        // Like or dislike the discussion
         discussionLikeBtn.setOnAction(event -> {
             if (this.discussion.isUserLiked(this.currentUser)) {
                 this.discussion.disliked(this.currentUser);
@@ -101,6 +104,7 @@ public class DiscussionFullPageController extends Controller implements Initiali
             refresh();
         });
         
+        // Post new comment
         postCommentBtn.setOnAction(event->{
             String commentContent = commentTF.getText();
             if(!commentContent.isBlank()){
@@ -114,6 +118,7 @@ public class DiscussionFullPageController extends Controller implements Initiali
         refresh();
     }
 
+    // Refresh details of the discussion and comments
     public void refresh() {
         commentTF.clear();
         

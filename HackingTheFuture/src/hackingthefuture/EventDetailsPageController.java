@@ -60,6 +60,7 @@ public class EventDetailsPageController implements Initializable {
         });
     }
 
+    // Get the event and current login User
     public void setup(Event event, User currentUser) {
         this.event = event;
         this.currentUser = currentUser;
@@ -67,20 +68,26 @@ public class EventDetailsPageController implements Initializable {
         refresh();
     }
 
+    // Refresh details of the event and the "Join" button
     public void refresh() {
         titleLabel.setText(event.getTitle());
         descriptionTextArea.setText(event.getDescription());
         venueLabel.setText(event.getVenue());
         dateLabel.setText(event.getFormattedDate());
         timeLabel.setText(event.getFormattedTime());
+        
         if (currentUser instanceof Student) {
+            // If the User is Student and haven't joined the event yet, show the "Join" button, else remove it
             if (!((Student) currentUser).getRegisteredEventList().contains(event.getID())) {
                 joinBtn.setOnAction(eh -> {
                     Event clashedEvent = ((Student) currentUser).getClashedEvent(this.event);
+                    // If the event is clashed with other event
                     if (clashedEvent != null) {
                         AlertController.showErrorAlert("Clashed with the event:\n" + clashedEvent.getTitle(), stage);
                         return;
                     }
+                    
+                    // Update registered events of the Student
                     ((Student) currentUser).joinEvent(event);
                     refresh();
                     AppMainController.refreshPage();
@@ -93,6 +100,7 @@ public class EventDetailsPageController implements Initializable {
 
     }
     
+    // Close the pop up window
     private void close(){
         stage.close();
     }

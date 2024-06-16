@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -11,7 +13,7 @@
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hackingthefuture.QuizCardController">
    <children>
-      <VBox fx:id="bg" prefHeight="270.0" prefWidth="420.0" spacing="5.0" style="-fx-background-radius: 20;" stylesheets="@QuizPageStyling.css">
+      <VBox fx:id="bg" prefHeight="270.0" prefWidth="420.0" spacing="5.0" style="-fx-background-radius: 20;">
          <children>
             <Label fx:id="quizTitleLabel" stylesheets="@QuizPageStyling.css" text="Title of Quiz 1">
                <font>
@@ -36,18 +38,22 @@
                   <Insets bottom="5.0" />
                </VBox.margin>
             </Label>
-            <Label fx:id="quizDescriptionLabel" alignment="TOP_LEFT" prefHeight="114.0" prefWidth="390.0" stylesheets="@QuizPageStyling.css" text="LabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabel" wrapText="true">
-               <font>
-                  <Font name="Calibri Bold" size="25.0" />
-               </font>
-               <effect>
-                  <DropShadow height="12.02" offsetX="2.0" offsetY="2.0" radius="5.51" width="12.02">
-                     <color>
-                        <Color red="0.6315789222717285" green="0.6315789222717285" blue="0.6315789222717285" />
-                     </color>
-                  </DropShadow>
-               </effect>
-            </Label>
+            <ScrollPane hbarPolicy="NEVER" prefHeight="105.0" prefWidth="380.0" style="-fx-background-color: transparent; -fx-border-width: 0;" stylesheets="@ProfileStyling.css">
+               <content>
+                  <Label fx:id="quizDescriptionLabel" alignment="TOP_LEFT" prefWidth="362.0" stylesheets="@QuizPageStyling.css" text="LabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabel" wrapText="true">
+                     <font>
+                        <Font name="Calibri Bold" size="25.0" />
+                     </font>
+                     <effect>
+                        <DropShadow height="12.02" offsetX="2.0" offsetY="2.0" radius="5.51" width="12.02">
+                           <color>
+                              <Color red="0.6315789222717285" green="0.6315789222717285" blue="0.6315789222717285" />
+                           </color>
+                        </DropShadow>
+                     </effect>
+                  </Label>
+               </content>
+            </ScrollPane>
             <HBox alignment="CENTER">
                <children>
                   <Button fx:id="quizAttemptBtn" mnemonicParsing="false" prefHeight="44.0" prefWidth="135.0" styleClass="editBtn" stylesheets="@ProfileStyling.css" text="Attempt" textFill="WHITE">
@@ -71,6 +77,10 @@
                </color>
             </DropShadow>
          </effect>
+         <stylesheets>
+            <URL value="@QuizPageStyling.css" />
+            <URL value="@ProfileStyling.css" />
+         </stylesheets>
       </VBox>
    </children>
 </VBox>

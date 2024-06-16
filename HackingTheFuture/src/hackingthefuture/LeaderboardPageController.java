@@ -66,6 +66,7 @@ public class LeaderboardPageController extends Controller implements Initializab
         });
     }
 
+    // Get current login User
     public void setup(User user) {
         currentUser = user;
 
@@ -122,6 +123,7 @@ public class LeaderboardPageController extends Controller implements Initializab
             }
         });
 
+        // Points column
         pointColumn.setCellValueFactory(cellData -> {
             return new ReadOnlyObjectWrapper(cellData.getValue().getPoint());
         });
@@ -129,19 +131,24 @@ public class LeaderboardPageController extends Controller implements Initializab
         refresh();
     }
 
+    // Get observable list of all Students
     private ObservableList<Student> getStudents() {
         ObservableList<Student> res = FXCollections.observableArrayList();
 
+        // Initialise a priority queue to get Student based on points(descending) and time that points last updated(ascending)
         PriorityQueue<Student> leaderboardQueue = new PriorityQueue<>((s1, s2) -> Integer.compare(s2.getPoint(), s1.getPoint()));
         leaderboardQueue.addAll(LeaderboardHandler.getStudents());
 
+        // Get Students with points>0
         while (!leaderboardQueue.isEmpty() && leaderboardQueue.peek().getPoint()!=0) {
             res.add(leaderboardQueue.poll());
         }
         
+        // Initialise a priority queue to get Student with points=0 based on time that account is registered
         PriorityQueue<Student> noPointStudentQueue = new PriorityQueue<>((s1, s2) -> s1.getID().compareTo(s2.getID()));
         noPointStudentQueue.addAll(leaderboardQueue);
         
+        // Get Students with points=0
         while (!noPointStudentQueue.isEmpty()) {
             res.add(noPointStudentQueue.poll());
         }
@@ -149,6 +156,7 @@ public class LeaderboardPageController extends Controller implements Initializab
         return res;
     }
 
+    // Refresh the leaderboard
     public void refresh() {
         leaderboardView.setItems(getStudents());
     }

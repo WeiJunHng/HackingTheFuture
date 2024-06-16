@@ -21,6 +21,7 @@ public class Educator extends User {
         quizCreated = UserHandler.getQuizCreated(this);
     }
     
+    // Get list of IDs of event created
     public List<String> getEventCreatedList() {
         if(eventCreated.isEmpty()){
             return List.of();
@@ -28,10 +29,11 @@ public class Educator extends User {
         return Arrays.asList(eventCreated.split(","));
     }
     
+    // Get list of IDs of event created (In form of string)
     public String getEventCreated() {
         return eventCreated;
     }
-
+    // Get list of IDs of quiz created
     public List<String> getQuizCreatedList() {
         if(quizCreated.isEmpty()){
             return List.of();
@@ -39,14 +41,17 @@ public class Educator extends User {
         return Arrays.asList(quizCreated.split(","));
     }
     
+    // Get list of IDs of quiz created (In form of string)
     public String getQuizCreated() {
         return quizCreated;
     }
     
+    // Update events created
     public void updateEvent(String events){
         eventCreated = events;
     }
     
+    // Update quiz created
     public void updateQuiz(String quiz){
         quizCreated = quiz;
     }

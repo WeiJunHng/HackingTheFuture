@@ -46,9 +46,11 @@ public class DiscussionPageController extends Controller implements Initializabl
         // TODO
     }
 
+    // Get the current login User
     public void setup(User currentUser) {
         this.currentUser = currentUser;
 
+        // Open pop up window of "New Discussion"
         createDiscussionBtn.setOnAction(event -> {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("CreateDiscussionPage.fxml"));
@@ -78,6 +80,7 @@ public class DiscussionPageController extends Controller implements Initializabl
         refresh();
     }
 
+    // Refresh all discussions shown
     @Override
     public void refresh() {
         discussionsBox.getChildren().clear();

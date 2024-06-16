@@ -41,6 +41,7 @@ public class Student extends User {
         this.parentID = parentID;
     }
 
+    // Getter for an object
     public String getQuizDone() {
         return quizDone;
     }
@@ -49,34 +50,42 @@ public class Student extends User {
         return registeredEvent;
     }
 
+    // Get friends (In form of string)
     public String getFriend() {
         return UserHandler.studentGetFriend(this);
     }
-
+    
+    // Get friend requests (In form of string)
     public String getFriendRequest() {
         return UserHandler.studentGetFriendRequest(this);
     }
 
+    // Get list of parents (In form of string)
     public List<String> getParentList() {
         return Arrays.asList(parentID.split(","));
     }
 
+    // Get list of registered events (In form of string)
     public List<String> getRegisteredEventList() {
         return Arrays.asList(registeredEvent.split(","));
     }
 
+    // Get list of object of registered events
     public List<Event> getRegisteredEventObjectList() {
         return UserHandler.getRegisteredEventList(this);
     }
 
+    // Get list of object of past bookings
     public List<Booking> getRegisteredBookingList() {
         return UserHandler.getPastBooking(this);
     }
 
+    // Get list of quiz done (In form of string)
     public List<String> getQuizDoneList() {
         return Arrays.asList(quizDone.split(","));
     }
 
+    // Get list of friends (In form of string)
     public List<String> getFriendList() {
         String friend = getFriend();
         if (friend.isBlank()) {
@@ -85,6 +94,7 @@ public class Student extends User {
         return Arrays.asList(friend.split(","));
     }
 
+    // Get list of friend requests (In form of string)
     public List<String> getFriendRequestList() {
         String friendRequest = getFriendRequest();
         if (friendRequest.isBlank()) {
@@ -97,12 +107,14 @@ public class Student extends User {
         return point;
     }
 
+    // Update registered event in database and add point
     public void joinEvent(Event event) {
         if (UserHandler.updateRegisteredEvent(this, event)) {
             this.point += 5;
         }
     }
 
+    // Update quiz done in database and add point
     public void doQuiz(Quiz quiz) {
         if (UserHandler.updateQuizDone(this, quiz)) {
             this.point += 2;
@@ -113,6 +125,7 @@ public class Student extends User {
         this.quizDone = quizDone;
     }
 
+    // Get registered event clashed with the event passed in
     public Event getClashedEvent(Event event) {
         for (Event registeredEvent : getRegisteredEventObjectList()) {
             if (registeredEvent.getDate().isEqual(event.getDate())) {
@@ -122,6 +135,7 @@ public class Student extends User {
         return null;
     }
 
+    // Check does the date clashed with any event registered
     public boolean isClashed(LocalDate date) {
         for (Event registeredEvent : getRegisteredEventObjectList()) {
             if (registeredEvent.getDate().isEqual(date)) {
@@ -135,15 +149,19 @@ public class Student extends User {
         this.registeredEvent = registeredEvent;
     }
 
+    // Check is the Student is friend of this Student
     public boolean isFriend(Student currentStudent) {
         return getFriendList().contains(currentStudent.ID);
     }
 
+    // Check does friend request sent to the Student
     public boolean isFriendRequestSent(Student other) {
         return other.getFriendRequestList().contains(this.ID);
     }
 
+    // Send friend request to other Student
     public String sendFriendRequest(Student receiver) {
+        // If the Student has sent friend request to this Student, add friend
         if (receiver.isFriendRequestSent(this)) {
             addFriend(receiver);
             return "Friend added!";
@@ -153,14 +171,17 @@ public class Student extends User {
         }
     }
 
+    // Update friends in database
     public void addFriend(Student friend) {
         UserHandler.saveFriend(this, friend);
     }
 
+    // Update friend requests in database
     public void deleteFriendRequest(Student friend) {
         UserHandler.deleteFriendRequest(this, friend);
     }
     
+    // Update parent in database
     public void updateParent(String newParentID){
         parentID = newParentID;
     }

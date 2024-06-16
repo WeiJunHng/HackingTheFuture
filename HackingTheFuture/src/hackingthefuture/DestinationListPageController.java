@@ -48,10 +48,14 @@ public class DestinationListPageController extends Controller implements Initial
         // TODO
     }
 
+    // Get current login Parent
+    // Initialise the page
     public void setup(Parent currentParent) {
         this.currentParent = currentParent;
 
         destinationHBox.getChildren().clear();
+        
+        // Use priority queue to get the destinations
         PriorityQueue<Destination> destinationQueue = Destination.getDestinationQueue(currentParent);
         for (int i=0;!destinationQueue.isEmpty();i++) {
             Destination destination = destinationQueue.poll();
@@ -66,6 +70,7 @@ public class DestinationListPageController extends Controller implements Initial
             }
         }
 
+        // Action for "next" button
         destinationNextBtn.setOnAction(event -> {
             nextLoop = currentDestinationIndex == destinationList.size() - 1;
             if (nextLoop) {
@@ -77,6 +82,7 @@ public class DestinationListPageController extends Controller implements Initial
             switchDestination();
         });
 
+        // Action for "previous" button
         destinationPrevBtn.setOnAction(event -> {
             prevLoop = currentDestinationIndex == 0;
             if (prevLoop) {
@@ -94,6 +100,7 @@ public class DestinationListPageController extends Controller implements Initial
         
     }
 
+    // Switching animation for changing destination
     private void switchDestination() {
 //        destinationPrevBtn.setDisable(true);
 //        destinationNextBtn.setDisable(true);

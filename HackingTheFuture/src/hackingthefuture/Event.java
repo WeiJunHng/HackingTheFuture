@@ -37,6 +37,7 @@ public class Event {
         this.educatorID = educatorID;
     }
 
+    // Getter for an object
     public String getID() {
         return ID;
     }
@@ -57,6 +58,7 @@ public class Event {
         return date;
     }
     
+    // Get formatted string of date of the event
     public String getFormattedDate() {
         return date.format(DateTimeFormatter.ofPattern("d-M-yyyy"));
     }
@@ -65,6 +67,7 @@ public class Event {
         return time;
     }
     
+    // Get formatted string of time of the event
     public String getFormattedTime() {
         return time.format(DateTimeFormatter.ofPattern("hh:mm a")).toUpperCase();
     }

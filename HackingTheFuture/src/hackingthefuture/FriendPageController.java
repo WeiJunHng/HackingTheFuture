@@ -71,15 +71,19 @@ public class FriendPageController extends Controller implements Initializable {
 
         closeBtn.setOnAction(event -> close());
 
+        // Show "Friends" page
         switchFriendBtn.setOnAction(event -> {
             switchPane(event);
         });
 
+        // Show "Friend Request" page
         switchFriendRequestBtn.setOnAction(event -> {
             switchPane(event);
         });
     }
 
+    // Get current login Student
+    // Student viewing own friends
     public void setup(Student currentUser) {
         owner = currentUser;
         this.currentUser = currentUser;
@@ -87,6 +91,8 @@ public class FriendPageController extends Controller implements Initializable {
         refresh();
     }
 
+    // Get owner of the "Friends" page and current login User
+    // Other User viewing a student's friends
     public void setup(Student owner, User currentUser) {
         this.owner = owner;
         this.currentUser = currentUser;
@@ -94,17 +100,12 @@ public class FriendPageController extends Controller implements Initializable {
         refresh();
     }
 
-    public void setup(Student owner, User currentUser, ProfileController controller) {
-        this.owner = owner;
-        this.currentUser = currentUser;
-        this.controller = controller;
-
-        refresh();
-    }
-
+    // Refresh friends and friend requests
     public void refresh() {
         otherFriendPane.setVisible(false);
         friendPaneForCurrentUser.setVisible(false);
+        
+        // Student viewing own "Friends" page
         if (owner.getID().equals(currentUser.getID())) {
             friendPaneForCurrentUser.setVisible(true);
             currentSelectedBtn.setDisable(true);
@@ -115,6 +116,7 @@ public class FriendPageController extends Controller implements Initializable {
             friendVBox.getChildren().clear();
             friendRequestVBox.getChildren().clear();
 
+            // Update friend requests
             if (friendRequestPane.isVisible()) {
                 for (String requesterID : owner.getFriendRequestList().reversed()) {
                     try {
@@ -127,10 +129,13 @@ public class FriendPageController extends Controller implements Initializable {
                         e.printStackTrace();
                     }
                 }
-            } else if (friendPane.isVisible()) {
+            } 
+            // Update friends
+            else if (friendPane.isVisible()) {
                 for (String friendID : owner.getFriendList()) {
                     Student friend = (Student) UserHandler.getUser(friendID);
                     Hyperlink link = new Hyperlink(friend.getUsername());
+                    // Show friend's profile
                     link.setOnAction(event -> {
                         try {
                             FXMLLoader loader = new FXMLLoader(getClass().getResource("Profile.fxml"));
@@ -146,12 +151,16 @@ public class FriendPageController extends Controller implements Initializable {
                     friendVBox.getChildren().add(link);
                 }
             }
-        } else {
+        } 
+        // Other people viewing a Student's "Friends" page
+        else {
             otherFriendPane.setVisible(true);
+            // Update friends
             otherFriendVBox.getChildren().clear();
             for (String friendID : owner.getFriendList()) {
                 Student friend = (Student) UserHandler.getUser(friendID);
                 Hyperlink link = new Hyperlink(friend.getUsername());
+                // Show friend's profile
                 link.setOnAction(event -> {
                     try {
                         FXMLLoader loader = new FXMLLoader(getClass().getResource("Profile.fxml"));
@@ -169,6 +178,8 @@ public class FriendPageController extends Controller implements Initializable {
         }
     }
 
+    // Switching page between "Friends" and "Friend Request"
+    // Only used when Student viewing own "Friends" page
     private void switchPane(ActionEvent event) {
         currentSelectedBtn.setDisable(false);
         currentSelectedBtn.setId("");
@@ -181,6 +192,7 @@ public class FriendPageController extends Controller implements Initializable {
         refresh();
     }
 
+    // Close the pop up window
     public void close() {
         ((Stage) closeBtn.getScene().getWindow()).close();
     }

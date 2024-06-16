@@ -26,6 +26,7 @@ public class DBHandler {
 
     }
 
+    // Check does the email exist (registered)
     protected boolean checkEmailExist(String email) {
         DB.connectDB();
         Connection conn = DB.getConnection();
@@ -47,6 +48,7 @@ public class DBHandler {
         }
     }
 
+    // Check does the username exist (used)
     protected boolean checkUsernameExist(String username) {
         DB.connectDB();
         Connection conn = DB.getConnection();
@@ -68,6 +70,7 @@ public class DBHandler {
         }
     }
 
+    // Get password from database with given email
     protected String getPasswordByEmail(String email) {
         DB.connectDB();
         Connection conn = DB.getConnection();
@@ -92,6 +95,7 @@ public class DBHandler {
         }
     }
 
+    // Get password from database with given username
     protected String getPasswordByUsername(String username) {
         DB.connectDB();
         Connection conn = DB.getConnection();
@@ -116,6 +120,7 @@ public class DBHandler {
         }
     }
 
+    // Get user ID from database with given email
     protected String getIDByEmail(String email) {
         DB.connectDB();
         Connection conn = DB.getConnection();
@@ -140,6 +145,7 @@ public class DBHandler {
         }
     }
 
+    // Get role of user from database with given email
     protected String getRoleByEmail(String email) {
         DB.connectDB();
         Connection conn = DB.getConnection();
@@ -164,6 +170,7 @@ public class DBHandler {
         }
     }
 
+    // Get ParentID from database with given Student ID
     protected String getParentIDByID(String id) {
         DB.connectDB();
         Connection conn = DB.getConnection();
@@ -188,6 +195,7 @@ public class DBHandler {
         }
     }
 
+    // Get ChildrenID from database with given Parent ID
     protected String getChildrenIDByID(String id) {
         DB.connectDB();
         Connection conn = DB.getConnection();
@@ -212,6 +220,7 @@ public class DBHandler {
         }
     }
 
+    // Get past booking with given Parent ID
     protected String getPastBookingByID(String id) {
         DB.connectDB();
         Connection conn = DB.getConnection();
@@ -236,6 +245,7 @@ public class DBHandler {
         }
     }
 
+    // Get list of string of details of a Student with given ID
     protected List<String> getStudentDetailsByID(String id) {
         DB.connectDB();
         Connection conn = DB.getConnection();
@@ -267,6 +277,7 @@ public class DBHandler {
         }
     }
 
+    // Get point of Student with given ID
     protected int getPointsByID(String id) {
         DB.connectDB();
         Connection conn = DB.getConnection();
@@ -291,6 +302,7 @@ public class DBHandler {
         }
     }
 
+    // Get event created by Educator with given ID
     protected String getEventCreatedByID(String id) {
         DB.connectDB();
         Connection conn = DB.getConnection();
@@ -315,6 +327,7 @@ public class DBHandler {
         }
     }
 
+    // Get quiz created by Educator with given ID
     protected String getQuizCreatedByID(String id) {
         DB.connectDB();
         Connection conn = DB.getConnection();
@@ -339,6 +352,7 @@ public class DBHandler {
         }
     }
 
+    // Get number of parents of a Student with given email
     protected int getParentCountByEmail(String email) {
         DB.connectDB();
         Connection conn = DB.getConnection();
@@ -363,13 +377,13 @@ public class DBHandler {
         }
     }
 
+    // Update IDs of parent and number of parents of a Student with given Student ID
     protected String updateParent(String studentID, String parentID) {
         DB.connectDB();
         Connection conn = DB.getConnection();
 
         try {
             PreparedStatement ps = conn.prepareStatement("UPDATE student SET ParentID=?, ParentCount=ParentCount+1 WHERE ID=?");
-            System.out.println("parent add");
             String parentsID = getParentIDByID(studentID);
             parentsID += parentsID.isEmpty() ? parentID : "," + parentID;
             ps.setObject(1, parentsID);
@@ -389,6 +403,7 @@ public class DBHandler {
         }
     }
 
+    // Update IDs of children of a Parent with given Parent ID
     protected String updateChildren(String parentID, String childID) {
         DB.connectDB();
         Connection conn = DB.getConnection();
@@ -414,6 +429,7 @@ public class DBHandler {
         }
     }
 
+    // Save user into specific table (based on role) in database with given user information
     protected void saveUser(String role, String email, String username, String password, String location, String kinID) {
         DB.connectDB();
         Connection conn = DB.getConnection();
@@ -461,6 +477,7 @@ public class DBHandler {
         }
     }
 
+    // Save 1 student and 1 parent at same time (Used when registering student and parent simultaneously)
     public void saveTwoUsers(String role, String email, String username, String password, String kinRole, String kinEmail, String kinUsername, String kinPassword, String location) {
         DB.connectDB();
         Connection conn = DB.getConnection();
@@ -505,6 +522,8 @@ public class DBHandler {
         }
     }
 
+    // Get "User" object with given email
+    //  To ease access of information about the user
     protected User getUserByEmail(String email) {
         DB.connectDB();
         Connection conn = DB.getConnection();
@@ -534,6 +553,8 @@ public class DBHandler {
         }
     }
 
+    // Get "User" object with given username
+    //  To ease access of information about the user
     protected User getUserByUsername(String username) {
         DB.connectDB();
         Connection conn = DB.getConnection();
@@ -563,6 +584,8 @@ public class DBHandler {
         }
     }
 
+    // Get "User" object with given ID
+    //  To ease access of information about the user
     protected User getUserByID(String ID) {
         DB.connectDB();
         Connection conn = DB.getConnection();
@@ -592,6 +615,7 @@ public class DBHandler {
         }
     }
 
+    // Save the event into "Event" table and update event created by the educator
     protected void saveEvent(Event event, Educator creator) {
         DB.connectDB();
         Connection conn = DB.getConnection();
@@ -637,6 +661,7 @@ public class DBHandler {
         }
     }
 
+    // Save the quiz into "Quiz" table and update quiz created by the educator
     protected void saveQuiz(Quiz quiz, Educator creator) {
         DB.connectDB();
         Connection conn = DB.getConnection();
@@ -681,6 +706,7 @@ public class DBHandler {
         }
     }
 
+    // Get 3 closest upcoming events (after today)
     protected List<Event> getUpcomingEvents() {
         List<Event> res = new ArrayList<>();
 
@@ -719,6 +745,7 @@ public class DBHandler {
         }
     }
 
+    // Get list of live events happening on today
     protected List<Event> getOngoingEvents() {
         List<Event> res = new ArrayList<>();
 
@@ -757,6 +784,7 @@ public class DBHandler {
         }
     }
 
+    // Get list of all quiz 
     protected List<Quiz> getQuizzes() {
         List<Quiz> res = new ArrayList<>();
 
@@ -794,6 +822,7 @@ public class DBHandler {
         }
     }
 
+    // Get specific "Quiz" object with given ID
     protected Quiz getQuizByID(String ID) {
         DB.connectDB();
         Connection conn = DB.getConnection();
@@ -828,6 +857,7 @@ public class DBHandler {
         }
     }
 
+    // Save the quiz into "QuizDone" of the Student
     protected boolean studentUpdateQuizDone(Student student, String quizID) {
         DB.connectDB();
         Connection conn = DB.getConnection();
@@ -862,6 +892,7 @@ public class DBHandler {
         }
     }
 
+    // Save the event into "RegisteredEvent" of the Student
     protected boolean studentUpdateRegisteredEvent(Student student, String eventID) {
         DB.connectDB();
         Connection conn = DB.getConnection();
@@ -896,6 +927,7 @@ public class DBHandler {
         }
     }
 
+    // Get list of events registered by the Student (only live and upcoming, past events not included)
     protected List<Event> studentGetRegisteredEvents(Student student) {
         DB.connectDB();
         Connection conn = DB.getConnection();
@@ -904,7 +936,7 @@ public class DBHandler {
 
         try {
             for (String eventID : student.getRegisteredEventList()) {
-                PreparedStatement ps = conn.prepareStatement("SELECT * FROM event WHERE ID=?");
+                PreparedStatement ps = conn.prepareStatement("SELECT * FROM event WHERE ID=? AND `Date`>=CURRENT_DATE");
                 ps.setObject(1, eventID);
 
                 ResultSet rs = ps.executeQuery();
@@ -934,6 +966,7 @@ public class DBHandler {
         }
     }
 
+    // Save discussion into "DIscussion" table
     protected void postDiscussion(Discussion discussion, User author) {
         DB.connectDB();
         Connection conn = DB.getConnection();
@@ -959,6 +992,7 @@ public class DBHandler {
         }
     }
 
+    // Save the comment into "Comment" table
     protected void postComment(Comment comment, User author) {
         DB.connectDB();
         Connection conn = DB.getConnection();
@@ -984,6 +1018,7 @@ public class DBHandler {
         }
     }
 
+    // Get "Discusison" object with given ID
     protected Discussion getDiscussionByID(String ID) {
         DB.connectDB();
         Connection conn = DB.getConnection();
@@ -1018,6 +1053,7 @@ public class DBHandler {
         }
     }
 
+    // Get list of all discussions
     protected List<Discussion> getDiscussionList() {
         List<Discussion> res = new ArrayList<>();
 
@@ -1055,6 +1091,7 @@ public class DBHandler {
         }
     }
 
+    // Get list of all comments of the given discussion
     protected List<Comment> getCommentList(Discussion discussion) {
         List<Comment> res = new ArrayList<>();
 
@@ -1092,6 +1129,7 @@ public class DBHandler {
         }
     }
 
+    // Update list of users liked the given discussion
     protected void updateUserLiked(Discussion discussion, String userLikedNew) {
         DB.connectDB();
         Connection conn = DB.getConnection();
@@ -1117,6 +1155,7 @@ public class DBHandler {
         }
     }
 
+    // Update list of users liked the given comment
     protected void updateUserLiked(Comment comment, String userLikedNew) {
         DB.connectDB();
         Connection conn = DB.getConnection();
@@ -1175,7 +1214,7 @@ public class DBHandler {
         List<Booking> res = new ArrayList<>();
 
         try {
-            PreparedStatement ps = conn.prepareStatement("SELECT DISTINCT Date FROM booking WHERE ParentID=?");
+            PreparedStatement ps = conn.prepareStatement("SELECT DISTINCT Date FROM booking WHERE ParentID=? AND `Date`>=CURRENT_DATE");
             ps.setObject(1, parent.getID());
             ResultSet rs = ps.executeQuery();
 
@@ -1221,7 +1260,7 @@ public class DBHandler {
         List<Booking> res = new ArrayList<>();
 
         try {
-            PreparedStatement ps = conn.prepareStatement("SELECT * FROM booking WHERE StudentID=?");
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM booking WHERE StudentID=? AND `Date`>=CURRENT_DATE");
             ps.setObject(1, student.getID());
             ResultSet rs = ps.executeQuery();
 

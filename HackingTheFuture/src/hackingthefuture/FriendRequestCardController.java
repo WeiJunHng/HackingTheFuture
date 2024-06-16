@@ -40,11 +40,13 @@ public class FriendRequestCardController implements Initializable {
         // TODO
     }
 
+    // Get Student who sent friend request, current login User and controller of the "Friends" page
     public void setup(Student student, Student currentStudent, FriendPageController friendPageController) {
         this.student = student;
         this.currentStudent = currentStudent;
 
         link.setText(student.getUsername());
+        // Show profile of the Student who sent friend request
         link.setOnAction(event -> {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("Profile.fxml"));
@@ -59,10 +61,13 @@ public class FriendRequestCardController implements Initializable {
             }
         });
 
+        // Accept friend request
         requestConfirmBtn.setOnAction(event -> {
             currentStudent.addFriend(student);
             friendPageController.refresh();
         });
+        
+        // Delete friend request
         requestDeleteBtn.setOnAction(event -> {
             currentStudent.deleteFriendRequest(student);
             friendPageController.refresh();

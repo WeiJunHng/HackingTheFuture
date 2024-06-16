@@ -67,12 +67,18 @@ public class QuizPageController extends Controller implements Initializable {
         ((VBox) filterPane.getParent().getChildrenUnmodifiable().get(0)).setOnMouseClicked(event -> filterPane.setClip(new Rectangle(1140, 31, 287.2, 45)));
     }
 
+    // Get the current login User
+    // Initialise the page
     public void setupQuizPage(User user) {
         currentUser = user;
         refresh();
 
+        // If current login User is Educator
         if (currentUser instanceof Educator currentEducator) {
+            // Show "Create Quiz" button
             createQuizBtn.setVisible(true);
+            
+            // Show "Create Quiz" page
             createQuizBtn.setOnAction(eh -> {
                 try {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("CreateQuizPage.fxml"));
@@ -99,6 +105,7 @@ public class QuizPageController extends Controller implements Initializable {
             });
         }
 
+        // Select or deselect all options in the filter
         filterAllCheckBox.setOnAction(event -> {
             allCBClicked = true;
             for (int i = 1; i < 5; i++) {
@@ -110,13 +117,24 @@ public class QuizPageController extends Controller implements Initializable {
 
         for (int i = 1; i < 5; i++) {
             CheckBox box = (CheckBox) filterChoiceVBox.getChildren().get(i);
+            
             box.selectedProperty().addListener((observable, oldValue, newValue) -> {
                 String theme = ((Label) box.getChildrenUnmodifiable().get(0)).getText();
+                // When option deselected
                 if (!newValue) {
+                    // Remove the corresponding theme from list of themes chosen
                     themesChosen.remove(theme);
+                    
+                    // Deselect the "All" option
                     filterAllCheckBox.setSelected(false);
-                } else if (!themesChosen.contains(theme)) {
+                } 
+                // Option chosen and themes chosen does not contain the corresponding theme
+                else if (!themesChosen.contains(theme)) {
+                    // Add the corresponding theme
                     themesChosen.add(theme);
+                    
+                    // If the option is not changed due to "All" option chosen, determine does all themes chosen
+                    // If so, set the "All" option to be selected
                     if (!allCBClicked) {
                         boolean allChosen = true;
                         for (int j = 1; j < 5; j++) {
@@ -126,6 +144,9 @@ public class QuizPageController extends Controller implements Initializable {
                         filterAllCheckBox.setSelected(allChosen);
                     }
                 }
+                
+                // If the option is not changed due to "All" option chosen, determine does all themes chosen
+                // Refresh all quiz shown
                 if (!allCBClicked) {
                     refresh();
                 }
@@ -133,6 +154,7 @@ public class QuizPageController extends Controller implements Initializable {
         }
     }
 
+    // Refresh the page
     public void refresh() {
         List<Quiz> quizList = QuizHandler.getQuizList();
 
@@ -142,14 +164,19 @@ public class QuizPageController extends Controller implements Initializable {
 
         int i = 0;
         for (Quiz quiz : quizList) {
+            // If the theme of the quiz is not selected in the filter, do not show it
             if (!themesChosen.contains(quiz.getTheme())) {
                 continue;
-            } else if (currentUser instanceof Student) {
+            } 
+            // If the current login User is Student and has done the quiz, add the quiz into doneQuizList
+            else if (currentUser instanceof Student) {
                 if (((Student) currentUser).getQuizDoneList().contains(quiz.getID())) {
                     doneQuizList.add(quiz);
                     continue;
                 }
             }
+            
+            // Add the quiz to the gridpane to show it
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("QuizCard.fxml"));
                 VBox root = loader.load();
@@ -162,10 +189,12 @@ public class QuizPageController extends Controller implements Initializable {
             i++;
         }
 
+        // If the current login User is not Student, skip the process below
         if (!(currentUser instanceof Student)) {
             return;
         }
 
+        // Add all quiz done by the Student at the bottom
         for (Quiz quiz : doneQuizList) {
             if (!themesChosen.contains(quiz.getTheme())) {
                 continue;

@@ -67,10 +67,12 @@ public class DiscussionCardController implements Initializable {
         countLabelParent = (VBox) discussionLikeCountLabel.getParent();
     }
 
+    // Get the discussion and current login User
     public void setup(Discussion discussion, User currentUser) {
         this.discussion = discussion;
         this.currentUser = currentUser;
 
+        // View author's profile
         discussionAuthorBtn.setOnAction(event -> {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("Profile.fxml"));
@@ -84,6 +86,7 @@ public class DiscussionCardController implements Initializable {
             }
         });
 
+        // Like or dislike the discussion
         discussionLikeBtn.setOnAction(event -> {
             if (this.discussion.isUserLiked(this.currentUser)) {
                 this.discussion.disliked(this.currentUser);
@@ -93,6 +96,7 @@ public class DiscussionCardController implements Initializable {
             refresh();
         });
 
+        // View the full discussion
         discussionCard.setOnMouseClicked(eh -> {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("DiscussionFullPage.fxml"));
@@ -109,6 +113,8 @@ public class DiscussionCardController implements Initializable {
         refresh();
     }
 
+    // Refresh details about the discussion
+    // Determine colour of the love (red for liked, black for not liked)
     public void refresh() {
         discussionTitleLabel.setText(discussion.getTitle());
         discussionContentLabel.setText(discussion.getContent());

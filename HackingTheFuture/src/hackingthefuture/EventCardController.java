@@ -61,6 +61,8 @@ public class EventCardController implements Initializable {
         eventJoinBtn.setVisible(false);
     }
 
+    // Get current login User and the event
+    // Initialse details of the event
     public void setupEventCard(User user, Event event) {
         currentUser = user;
         this.event = event;
@@ -70,13 +72,19 @@ public class EventCardController implements Initializable {
         eventDateLabel.setText(this.event.getFormattedDate());
         eventTimeLabel.setText(this.event.getFormattedTime());
         eventVenueLabel.setText(this.event.getVenue());
+        
+        // If the User is Student, show "Join" button
         if (currentUser instanceof Student) {
             eventJoinBtn.setOnAction(e -> {
                 Event clashedEvent = ((Student) currentUser).getClashedEvent(this.event);
+                
+                // If the event clashed with event registered by the Student
                 if (clashedEvent != null) {
                     AlertController.showErrorAlert("Clashed with the event:\n" + clashedEvent.getTitle(), (Stage) eventJoinBtn.getScene().getWindow());
                     return;
                 }
+                
+                // Update registered events of the Student
                 ((Student) currentUser).joinEvent(this.event);
                 refreshCard();
                 AlertController.showSuccessAlert("You have joined the event!", (Stage) eventJoinBtn.getScene().getWindow());
@@ -84,6 +92,7 @@ public class EventCardController implements Initializable {
             refreshCard();
         }
 
+        // Show details of the event
         eventCard.setOnMouseClicked(eh -> {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("EventDetailsPage.fxml"));
@@ -110,6 +119,8 @@ public class EventCardController implements Initializable {
         });
     }
 
+    // Refresh details of the event
+    // Determine whether to disable the "Join" button or not
     private void refreshCard() {
         if (((Student) currentUser).getRegisteredEventList().contains(this.event.getID())) {
             eventJoinBtn.setDisable(true);

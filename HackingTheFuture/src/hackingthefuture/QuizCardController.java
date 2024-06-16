@@ -47,6 +47,7 @@ public class QuizCardController implements Initializable {
         // TODO
     }
 
+    // Get current login User and quiz
     public void setupQuizCard(QuizPageController QPCtrler, User user, Quiz quiz) {
         currentUser = user;
         this.quiz = quiz;
@@ -56,14 +57,18 @@ public class QuizCardController implements Initializable {
         quizThemeLabel.setText(this.quiz.getTheme());
         quizThemeLabel.setId(this.quiz.getTheme());
 
+        // If current login User is Student
         if (currentUser instanceof Student) {
+            // Attempt quiz
             quizAttemptBtn.setOnAction(event -> {
                 ((Student) currentUser).doQuiz(this.quiz);
+                // Redirect to link of Quizizz of the quiz
                 try {
                     Desktop.getDesktop().browse(new URI(this.quiz.getContent()));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+                // Refresh
                 refreshCard();
                 QPCtrler.refresh();
                 AppMainController.showSuccessAlert("Congratulations!\nYou have been awarded 2 marks.");
@@ -73,16 +78,23 @@ public class QuizCardController implements Initializable {
         refreshCard();
     }
 
+    // Refresh details of the quiz
     private void refreshCard() {
+        // If current login User is Educator, change colour of quiz card to blue
         if (currentUser instanceof Educator) {
             bg.setId(User.ROLE.EDUCATOR);
             quizAttemptBtn.setVisible(false);
-        } else if (currentUser instanceof Student) {
+        } 
+        // If current login User is Student
+        else if (currentUser instanceof Student) {
+            // If the Student have attempted the quiz, change colour of quiz card to red, disable "Attempt" button and change text of the button
             if (((Student) currentUser).getQuizDoneList().contains(this.quiz.getID())) {
                 quizAttemptBtn.setText("Done");
                 quizAttemptBtn.setDisable(true);
                 bg.setId("StudentDone");
-            } else {
+            } 
+            // Else, change colour of quiz card to green
+            else {
                 bg.setId("StudentNotDone");
             }
         }

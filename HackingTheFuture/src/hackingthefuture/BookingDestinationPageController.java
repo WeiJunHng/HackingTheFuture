@@ -110,6 +110,8 @@ public class BookingDestinationPageController extends Controller implements Init
         MenuItem allMenuItem = new MenuItem();
         allMenuItem.setGraphic(selectAllBox);
 
+        // When "All" checkbox is selected, select all children
+        // When "All" checkbox is deselected, deselect all children
         allMenuItem.setOnAction(event -> {
             selectAllBox.setSelected(!selectAllBox.isSelected());
             for (MenuItem item : childrenMenu.getItems()) {
@@ -123,6 +125,7 @@ public class BookingDestinationPageController extends Controller implements Init
         childrenMenu.getItems().add(allMenuItem);
     }
 
+    // Custom check box which can save the user
     private class StudentCheckBox extends CheckBox {
 
         private Student user;
@@ -137,10 +140,12 @@ public class BookingDestinationPageController extends Controller implements Init
         }
     }
 
+    // Initialise the page and get the current login Parent
     public void setup(int chosenIndex, Parent currentParent) {
         destinationIndex = chosenIndex;
         this.currentParent = currentParent;
 
+        // Arrange the destination based on distance using priority queue
         PriorityQueue<Destination> queue = Destination.getDestinationQueue(this.currentParent);
 
         destinationImageHBox.getChildren().clear();
@@ -157,6 +162,8 @@ public class BookingDestinationPageController extends Controller implements Init
             // Destination Name
             MenuItem destinationNameItem = new MenuItem(destination.getName());
             destinationNameItem.setStyle("-fx-text-fill : #4e4e4e; -fx-font-size: 25;");
+            
+            // Switch to specific destination when selected
             destinationNameItem.setOnAction(eh -> {
                 destinationIndex = destinationMenu.getItems().indexOf(destinationNameItem);
                 refresh();
@@ -178,6 +185,8 @@ public class BookingDestinationPageController extends Controller implements Init
             MenuItem childMenuItem = new MenuItem();
             childMenuItem.setGraphic(box);
 
+            // When check box of a child is deselected, deselect the "All" check box
+            // When check box of a child is selected, select the "All" check box if all children are selected
             childMenuItem.setOnAction(event -> {
                 box.setSelected(!box.isSelected());
 
@@ -195,22 +204,30 @@ public class BookingDestinationPageController extends Controller implements Init
             childrenMenu.getItems().add(childMenuItem);
         }
 
+        // Book the destination
         bookBtn.setOnAction(event -> {
+            // Check if there is at least 1 child chosen
             if (childrenMenu.getText().equals("Choose at least a child")) {
-                System.out.println("Choose at least a child!!!");
+                AppMainController.showErrorAlert("Choose at least a child");
                 return;
             }
+            // Check is there any available slot
             if (slotMenu.getItems().isEmpty()) {
-                System.out.println("No slot available for the destination");
+                AppMainController.showErrorAlert("No slot available for the destination");
                 return;
             }
+            // Check if slot is chosen when there is available slot
             if (slotMenu.getText().equals("Choose a slot")) {
-                System.out.println("Choose a slot");
+                AppMainController.showErrorAlert("Choose a slot");
                 return;
             }
+            
+            // Get the destination chosen
             Destination destination = Destination.getDestination(destinationMenu.getText());
+            // Get the slot chosen
             LocalDate slot = LocalDate.parse(slotMenu.getText(), DateTimeFormatter.ofPattern("d-M-yyyy"));
 
+            // Get list of students chosen
             List<Student> childrenSelected = new ArrayList<>();
 
             for (MenuItem item : childrenMenu.getItems()) {
@@ -220,13 +237,17 @@ public class BookingDestinationPageController extends Controller implements Init
                     }
                 }
             }
+            
+            // Parent book the destination
             this.currentParent.book(new Booking(this.currentParent, destination, slot, childrenSelected));
+            AppMainController.showSuccessAlert("Destination booked successfully");
             refresh();
         });
 
         refresh();
     }
 
+    // Refresh the page
     @Override
     public void refresh() {
 //        destinationImageHBox.setTranslateX(-452 * destinationIndex);
@@ -237,9 +258,12 @@ public class BookingDestinationPageController extends Controller implements Init
             actualDestinationIndex--;
         }
         actualDestinationIndex = (actualDestinationIndex + destinationList.size()) % destinationList.size();
+        
+        // Details of the destination
         destinationMenu.setText(destinationList.get(actualDestinationIndex).getName());
         distanceLabel.setText(String.format("%.2f km Away", destinationList.get(actualDestinationIndex).distanceOf(currentParent)));
 
+        // Animation of switching destination
         Timeline switchAnimation = new Timeline(
                 new KeyFrame(Duration.seconds(0.01),
                         new KeyValue(destinationPrevBtn.disableProperty(), true),
@@ -270,6 +294,7 @@ public class BookingDestinationPageController extends Controller implements Init
         refreshSlot();
     }
 
+    // Refresh the slots when children chosen is altered
     private void refreshSlot() {
         slotMenu.getItems().clear();
         LocalDate today = LocalDate.now();
@@ -285,6 +310,7 @@ public class BookingDestinationPageController extends Controller implements Init
             }
         }
 
+        // Check if at least 1 child is chosen
         if (!childSelected) {
             childrenMenu.setText("Choose at least a child");
             slotMenu.setText("No Slot Available");
@@ -295,6 +321,9 @@ public class BookingDestinationPageController extends Controller implements Init
             childrenMenu.setText(childrenSelected.replaceAll(", $", ""));
         }
 
+        // Get available slot
+        // Slot not clashed with booking made by the Parent
+        // Slot not clashed with event and tour of children chosen
         for (int i = 1; i <= 7; i++) {
 
             LocalDate slot = today.plusDays(i);
@@ -322,6 +351,7 @@ public class BookingDestinationPageController extends Controller implements Init
             }
         }
 
+        // Display "No Slot Available" if no slot available
         if (slotMenu.getItems().isEmpty()) {
             slotMenu.setText("No Slot Available");
         } else {

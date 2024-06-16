@@ -13,6 +13,7 @@ import java.util.List;
 public class LeaderboardHandler {
     private static final DBHandler dBHandler = new DBHandler();
 
+    // Get list of all Students
     public static List<Student> getStudents() {
         return dBHandler.getLeaderboardStudents();
     }

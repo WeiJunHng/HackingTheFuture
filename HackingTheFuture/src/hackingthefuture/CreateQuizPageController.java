@@ -94,6 +94,7 @@ public class CreateQuizPageController implements Initializable {
         QuizHandler.createQuiz(quiz, creator);
         refresh();
         close();
+        AppMainController.refreshPage();
         AppMainController.showSuccessAlert("Quiz Created");
     }
 

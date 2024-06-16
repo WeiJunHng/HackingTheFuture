@@ -112,7 +112,7 @@ public class LoginPageController implements Initializable {
     private Node alertPage;
     private AlertController alertController;
     private Scene alertScene;
-    
+
     private User currentUser;
 
     /**
@@ -129,7 +129,7 @@ public class LoginPageController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        
+
         loginTextFields = new TextField[]{loginEmailTF, loginPasswordTF, loginPasswordPF};
 
         registerTextFields = new TextField[]{registerEmailTF, registerUsernameTF, registerPasswordTF, registerConfirmPasswordTF,
@@ -255,7 +255,52 @@ public class LoginPageController implements Initializable {
         switch_login_link.setOnAction(event -> switchLoginAnimation());
 
         // Switch from Register to Kin
-        switch_kin_link.setOnAction(event -> switchKinRegisterAnimation(true));
+        switch_kin_link.setOnAction(event -> {
+            boolean hasEmpty = false;
+            for (TextField tf : registerTextFields) {
+                if (tf.getText().isBlank() && !tf.equals(registerKinEmailTF)) {
+                    tf.setId("Empty");
+                    hasEmpty = true;
+                }
+            }
+
+            // There is empty field
+            if (hasEmpty) {
+                showErrorAlert("All field must be filled in");
+                return;
+            }
+
+            String email = registerEmailTF.getText();
+            String username = registerUsernameTF.getText();
+            String password = registerPasswordTF.getText();
+            String confirmPassword = registerConfirmPasswordTF.getText();
+
+            // Email invalid
+            if (!LoginRegisterHandler.isValidateEmail(email)) {
+                // Error message
+                showErrorAlert("Invalid email address");
+                return;
+            }
+
+            // Email exist
+            if (LoginRegisterHandler.emailOrUsernameExist(email)) {
+                showErrorAlert("This email is already registered");
+                return;
+            }
+
+            // Username taken
+            if (LoginRegisterHandler.emailOrUsernameExist(username)) {
+                showErrorAlert("Username has been taken");
+                return;
+            }
+
+            // Password not same
+            if (!password.equals(confirmPassword)) {
+                showErrorAlert("Confirm your password!");
+                return;
+            }
+            switchKinRegisterAnimation(true);
+        });
 
         // Switch from Kin to Register
         kin_switch_register_link.setOnAction(event -> switchKinRegisterAnimation(false));
@@ -268,6 +313,7 @@ public class LoginPageController implements Initializable {
         kinRegisterBtn.setOnAction(event -> kinRegister());
     }
 
+    // Switching animation from "Login" to "Register" page
     private void switchRegisterAnimation() {
         switch_register_link.setDisable(true);
 
@@ -303,6 +349,7 @@ public class LoginPageController implements Initializable {
         switchAnimation.play();
     }
 
+    // Switching animation from "Register" to "Login" page
     private void switchLoginAnimation() {
         switch_login_link.setDisable(true);
 
@@ -336,6 +383,7 @@ public class LoginPageController implements Initializable {
         switchAnimation.play();
     }
 
+    // Switching animation between "Register" and "Register for Parent/Children" page
     private void switchKinRegisterAnimation(boolean left) {
         switch_login_link.setDisable(true);
         switch_kin_link.setDisable(true);
@@ -362,6 +410,7 @@ public class LoginPageController implements Initializable {
 
     }
 
+    // Switching animation from "Register for Parent/Children" to "Login" page
     private void kinSwitchLoginAnimation() {
         kin_switch_login_link.setDisable(true);
 
@@ -395,6 +444,7 @@ public class LoginPageController implements Initializable {
         switchAnimation.play();
     }
 
+    // Determine whether there is empty field or not
     private boolean hasEmptyField(TextField[] textFields) {
         boolean res = false;
         for (TextField tf : textFields) {
@@ -406,6 +456,7 @@ public class LoginPageController implements Initializable {
         return res;
     }
 
+    // "Register" button clicked
     private void register() {
         String role;
         try {
@@ -423,6 +474,7 @@ public class LoginPageController implements Initializable {
             }
         }
 
+        // There is empty field
         if (hasEmpty) {
             showErrorAlert("All field must be filled in");
             return;
@@ -435,7 +487,7 @@ public class LoginPageController implements Initializable {
         String kinEmail = registerKinEmailTF.getText();
 
         // Email invalid
-        if (!LoginRegisterHandler.isValidateEmail(email)) { 
+        if (!LoginRegisterHandler.isValidateEmail(email)) {
             // Error message
             showErrorAlert("Invalid email address");
             return;
@@ -494,6 +546,7 @@ public class LoginPageController implements Initializable {
             }
         }
 
+        // Register
         if (LoginRegisterHandler.isValidateRegistration(email, username, password, confirmPassword)) {
             User.register(role, email, username, password, kinEmail);
             showSuccessAlert("Registration success!");
@@ -501,7 +554,9 @@ public class LoginPageController implements Initializable {
         }
     }
 
+    // "Register" button in "Register for Parent/Children" page clicked
     private void kinRegister() {
+        // Get role of 1st user
         String role = ((Label) ((RadioButton) roleToggleGroup.getSelectedToggle()).getChildrenUnmodifiable().get(0)).getText();
         String kinRole = null;
         if (role.equals(User.ROLE.STUDENT)) {
@@ -510,21 +565,25 @@ public class LoginPageController implements Initializable {
             kinRole = User.ROLE.STUDENT;
         }
 
+        // There is empty field
         if (hasEmptyField(kinRegisterTextFields)) {
             showErrorAlert("All field must be filled in");
             return;
         }
-        
+
+        // Get details of 1st user
         String email = registerEmailTF.getText();
         String username = registerUsernameTF.getText();
         String password = registerPasswordTF.getText();
         String confirmPassword = registerConfirmPasswordTF.getText();
 
+        // Get details of 2nd user
         String kinEmail = kinRegisterEmailTF.getText();
         String kinUsername = kinRegisterUsernameTF.getText();
         String kinPassword = kinRegisterPasswordTF.getText();
         String kinConfirmPassword = kinRegisterConfirmPasswordTF.getText();
 
+        // Check details of 2nd user
         // Email invalid
         if (!LoginRegisterHandler.isValidateEmail(kinEmail)) {
             // Error message
@@ -550,6 +609,7 @@ public class LoginPageController implements Initializable {
             return;
         }
 
+        // Register both users
         if (LoginRegisterHandler.isValidateRegistration(email, username, password, confirmPassword)) {
             User.registerBoth(role, email, username, password, kinRole, kinEmail, kinUsername, kinPassword);
             showSuccessAlert("Registration success!");
@@ -560,7 +620,7 @@ public class LoginPageController implements Initializable {
     private void login(ActionEvent event) {
         String emailUsername = loginEmailTF.getText();
         String password = loginPasswordTF.getText();
-        
+
         boolean hasEmpty = false;
         for (TextField tf : loginTextFields) {
             if (tf.getText().isBlank()) {
@@ -569,16 +629,20 @@ public class LoginPageController implements Initializable {
             }
         }
 
+        // There is empty field
         if (hasEmpty) {
             showErrorAlert("All field must be filled in");
             return;
         }
 
+        // Email or username does not exist
         if (!LoginRegisterHandler.emailOrUsernameExist(emailUsername)) {
             loginEmailTF.setId("Empty");
             showErrorAlert("Email or Username doesn't exist.\nCheck again or register an account");
             return;
         }
+        
+        // If password correct, get the User object and downcast it to Student, Parent or Educator based on its role
         if (LoginRegisterHandler.isValidateLogin(emailUsername, password)) {
             currentUser = User.login(emailUsername);
             if (currentUser.getRole().equals(User.ROLE.STUDENT)) {
@@ -593,6 +657,8 @@ public class LoginPageController implements Initializable {
                 return;
             }
             showSuccessAlert("Successfully Login");
+            
+            // Switch to "Home" page
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("AppMain.fxml"));
                 root = loader.load();
@@ -605,23 +671,26 @@ public class LoginPageController implements Initializable {
                 stage.setScene(scene);
                 stage.setTitle("Main Page");
                 stage.show();
-                
+
                 return;
             } catch (IOException e) {
                 e.printStackTrace();
-//                System.out.println("error");
             }
         }
+        
+        // If password incorrect
         loginPasswordPF.setId("Empty");
         showErrorAlert("Incorrect password");
     }
 
+    // Reset the "Login" page
     private void resetLoginPage() {
         loginEmailTF.clear();
         loginPasswordPF.clear();
         loginShowPwCB.setSelected(false);
     }
 
+    // Reset the "Register" page
     private void resetRegisterPage() {
         registerEmailTF.clear();
         registerUsernameTF.clear();
@@ -642,6 +711,7 @@ public class LoginPageController implements Initializable {
         roleImageView.setVisible(false);
     }
 
+    // Reset the "Register for Parent/Children" page
     private void clearKinRegisterPage() {
         kinRegisterEmailTF.clear();
         kinRegisterUsernameTF.clear();
@@ -649,17 +719,20 @@ public class LoginPageController implements Initializable {
         kinRegisterConfirmPasswordPF.clear();
         kinRegisterShowPwCB.setSelected(false);
     }
-    
+
+    // Initialise "Success" alert
     private void showSuccessAlert(String message) {
         alertController.setSuccess(message);
         showAlert();
     }
 
+    // Initialise "Error" alert
     private void showErrorAlert(String message) {
         alertController.setError(message);
         showAlert();
     }
 
+    // Show the alert
     private void showAlert() {
         Stage stage = new Stage();
 

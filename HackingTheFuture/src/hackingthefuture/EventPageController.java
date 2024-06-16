@@ -54,11 +54,15 @@ public class EventPageController extends Controller implements Initializable {
         createEventBtn.setVisible(false);
     }
 
+    // Get current login User
     public void setupEventPage(User user) {
         currentUser = user;
 
+        // If the User is Educator, show "Create Event" button
         if (currentUser instanceof Educator currentEducator) {
             createEventBtn.setVisible(true);
+            
+            // Show "Create Event" page when the button is clicked
             createEventBtn.setOnAction(eh -> {
                 try {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("CreateEventPage.fxml"));
@@ -88,6 +92,7 @@ public class EventPageController extends Controller implements Initializable {
         refresh();
     }
 
+    // Refresh all events
     @Override
     public void refresh() {
         List<Event> ongoingEventList = EventHandler.getOngoingEventList();
@@ -97,16 +102,19 @@ public class EventPageController extends Controller implements Initializable {
             liveEventPrevBtn.setVisible(true);
         }
 
+        // Action for "next" button
         liveEventNextBtn.setOnAction(event -> {
             currentEventIndex = (currentEventIndex + 1) % ongoingEventList.size();
             switchEvent();
         });
 
+        // Action for "previous" button
         liveEventPrevBtn.setOnAction(event -> {
             currentEventIndex = (currentEventIndex - 1 + ongoingEventList.size()) % ongoingEventList.size();
             switchEvent();
         });
 
+        // Update all live events
         ongoingEventHBox.getChildren().clear();
         for (Event event : ongoingEventList) {
             try {
@@ -120,6 +128,7 @@ public class EventPageController extends Controller implements Initializable {
             }
         }
 
+        // Update the 3 upcoming events
         upcomingEventVBox.getChildren().clear();
         for (Event event : EventHandler.getUpcomingEventList()) {
             try {
@@ -134,6 +143,7 @@ public class EventPageController extends Controller implements Initializable {
         }
     }
 
+    // Switching animation when changing live events
     private void switchEvent() {
         Timeline switchAnimation = new Timeline(
                 new KeyFrame(Duration.seconds(0.5),
